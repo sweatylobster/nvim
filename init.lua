@@ -12,8 +12,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Set the damn leader
 vim.g.mapleader = " "
 
+-- And get the package manager going
 require('lazy').setup({
 
   { -- LSP Configuration & Plugins
@@ -58,6 +60,16 @@ require('lazy').setup({
   'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'tpope/vim-surround', --Surround text objects with anything, really
+  'folke/which-key.nvim', -- Tell me what else to do
+
+  -- Greeting on opening nvim
+  {'goolord/alpha-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function ()
+      require('alpha').setup(require('alpha.themes.startify').config) -- startify | dashboard
+    end,
+  },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -66,6 +78,8 @@ require('lazy').setup({
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 
 })
+
+require('max')
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -114,6 +128,8 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+vim.keymap.set('n', '<leader>l', ':Lazy<CR>')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`

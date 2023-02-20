@@ -1,31 +1,39 @@
+-- Kickstart.nvim keymaps for better default experience
+-- See `:help vim.keymap.set()`
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
 -- Theprimeagen's stuff
 -- https://github.com/jessarcher/dotfiles/blob/master/nvim/lua/user/keymaps.lua
 
 -- Use netrw and none of this other stuff
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
-vim.keymap.set('n', '<leader>pr', vim.cmd.Rexplore)
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = "Open netrw" })
+vim.keymap.set('n', '<leader>pr', vim.cmd.Rexplore, { desc = "Return to buffer" })
 
 -- Center when moving or searching, stay put when joining
-vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Stay put when joining"})
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center screen when scrolling"})
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Center screen when scrolling"})
+vim.keymap.set("n", "n", "nzzzv", { desc = "Center screen when searching"})
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Center screen when searching"})
 
 -- Repeatably replace text!
-vim.keymap.set("x", "<leader>p", "\"_dP")
+vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "Paste and don't store" })
 
 -- Clip it, Johnson!
-vim.keymap.set("n", "<leader>y", "\"+y")
-vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>Y", "\"+Y")
+vim.keymap.set("n", "<leader>y", "\"+y", { desc = '[Y]ank word to clipboard' })
+vim.keymap.set("v", "<leader>y", "\"+y", { desc = '[Y]ank selection to clipboard' })
+vim.keymap.set("n", "<leader>Y", "\"+Y", { desc = '[Y]ank line to clipboard' })
 
 -- To hell with it, Johnson!
-vim.keymap.set("n", "<leader>d", "\"_d")
-vim.keymap.set("v", "<leader>d", "\"_d")
+vim.keymap.set("n", "<leader>d", "\"_d", { desc = '[D]elete to black-hole' })
+vim.keymap.set("v", "<leader>d", "\"_d", { desc = '[D]elete selection to black-hole' })
 
 -- Replace word under cursor
-vim.keymap.set('n', '<leader>rw', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>')
+vim.keymap.set('n', '<leader>rw', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', { desc = '[R]eplace [w]ord under cursor' })
 
 -- Jess Archer stuff
 -- https://github.com/jessarcher/dotfiles/blob/master/nvim/lua/user/keymaps.lua
@@ -34,28 +42,32 @@ vim.keymap.set('n', '<leader>rw', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left
 vim.keymap.set('', 'gf', ':edit <cfile><CR>')
 
 -- The same, but put it in a new tab
-vim.keymap.set('', 'gt', ':tabedit <cfile><CR>')
+vim.keymap.set('', 'gt', ':tabedit <cfile><CR>', { desc = 'Tabedit the file under cursor' })
 
 -- Easy insertion of a trailing ; or , from insert mode
-vim.keymap.set('i', ';;', '<Esc>A;<Esc>')
-vim.keymap.set('i', ',,', '<Esc>A,<Esc>')
+-- Honestly this is clunky trash
+-- vim.keymap.set('i', ';;', '<Esc>A;<Esc>', { desc = "Trailing semi-colon" })
+-- vim.keymap.set('i', ',,', '<Esc>A,<Esc>', { desc = "Trailing comma" })
 
 -- Resize with arrows
-vim.keymap.set('n', '<C-Up>', ':resize +2<CR>')
-vim.keymap.set('n', '<C-Down>', ':resize -2<CR>')
-vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>')
-vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>')
+vim.keymap.set('n', '<C-Up>', ':resize -2<CR>', { desc = 'Resize up' })
+vim.keymap.set('n', '<C-Down>', ':resize +2<CR>', { desc = 'Resize down' })
+vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', { desc = 'Resize left' })
+vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', { desc = 'Resize right' })
 
 -- Move text up and down
-vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')
-vim.keymap.set('i', '<A-k>', '<Esc>:move .-2<CR>==gi')
-vim.keymap.set('x', '<A-j>', ":move '>+1<CR>gv-gv")
-vim.keymap.set('x', '<A-k>', ":move '<-2<CR>gv-gv")
+vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi', { desc = 'Move text down' })
+vim.keymap.set('i', '<A-k>', '<Esc>:move .-2<CR>==gi', { desc = 'Move text up' })
+vim.keymap.set('x', '<A-j>', ":move '>+1<CR>gv-gv", { desc = 'Move text down' })
+vim.keymap.set('x', '<A-k>', ":move '<-2<CR>gv-gv", { desc = 'Move text up' })
+
+-- Inspired by LazyVim
+vim.keymap.set('n', '<leader><tab><tab>', vim.cmd.tabnew, { desc = 'New tab' }) -- always was nice
+vim.keymap.set('n', '<leader><tab>]', vim.cmd.tabnext, { desc = '---> Next tab' })  -- ] or l
+vim.keymap.set('n', '<leader><tab>[', vim.cmd.tabprev, { desc = '<--- Prev tab' })  -- [ or h
+vim.keymap.set('n', '<leader><tab>q', vim.cmd.tabclose, { desc = 'Quit tab' }) -- q or d
+
+vim.keymap.set('n', '<leader>l', ':Lazy<CR>')
 
 -- ORIGINAL MAX THINGS
-
--- Move tabs
-vim.keymap.set('n', '<leader><tab><tab>', vim.cmd.tabnew)
-vim.keymap.set('n', '<leader><tab>K', vim.cmd.tabnext)
-vim.keymap.set('n', '<leader><tab>J', vim.cmd.tabprev)
-vim.keymap.set('n', '<leader><tab>x', vim.cmd.tabclose)
+-- yikes lol 2/19/2023

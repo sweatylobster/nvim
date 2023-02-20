@@ -14,122 +14,13 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Set the damn leader
 vim.g.mapleader = " "
-
--- And get the package manager going
-require('lazy').setup({
-
-  { -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-
-      -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
-
-      -- Additional lua configuration, makes nvim stuff amazing
-      'folke/neodev.nvim',
-    },
-  },
-
-  { -- Autocompletion
-    'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-  },
-
-  { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    build = function()
-      pcall(require('nvim-treesitter.install').update { with_sync = true })
-    end,
-  },
-
-  { -- Additional text objects via treesitter
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    dependencies = 'nvim-treesitter',
-  },
-
-  -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
-  'lewis6991/gitsigns.nvim',
-
-  'navarasu/onedark.nvim', -- Theme inspired by Atom
-  'nvim-lualine/lualine.nvim', -- Fancier statusline
-  'lukas-reineke/indent-blankline.nvim', -- Add indentation guides even on blank lines
-  'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-surround', --Surround text objects with anything, really
-  'folke/which-key.nvim', -- Tell me what else to do
-
-  -- Greeting on opening nvim
-  {'goolord/alpha-nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function ()
-      require('alpha').setup(require('alpha.themes.startify').config) -- startify | dashboard
-    end,
-  },
-
-  -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
-
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-
-})
-
-require('max')
-
--- [[ Setting options ]]
--- See `:help vim.o`
-
--- Set highlight on search
-vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
-
--- Enable mouse mode
-vim.o.mouse = 'a'
-
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Decrease update time
-vim.o.updatetime = 250
-vim.wo.signcolumn = 'yes'
-
--- Set colorscheme
-vim.o.termguicolors = true
-vim.cmd [[colorscheme onedark]]
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- [[ Basic Keymaps ]]
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+-- And get the package manager going
+require('lazy').setup('plugins')
 
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
-vim.keymap.set('n', '<leader>l', ':Lazy<CR>')
+-- Also load timewarp greeting, personal options, and keymaps
+require('max')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -142,39 +33,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
--- Set lualine as statusline
--- See `:help lualine.txt`
-require('lualine').setup {
-  options = {
-    icons_enabled = false,
-    theme = 'onedark',
-    component_separators = '|',
-    section_separators = '',
-  },
-}
-
--- Enable Comment.nvim
-require('Comment').setup()
-
--- Enable `lukas-reineke/indent-blankline.nvim`
--- See `:help indent_blankline.txt`
-require('indent_blankline').setup {
-  char = '┊',
-  show_trailing_blankline_indent = false,
-}
-
--- Gitsigns
--- See `:help gitsigns.txt`
-require('gitsigns').setup {
-  signs = {
-    add = { text = '+' },
-    change = { text = '~' },
-    delete = { text = '_' },
-    topdelete = { text = '‾' },
-    changedelete = { text = '~' },
-  },
-}
-
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
@@ -183,6 +41,11 @@ require('telescope').setup {
       i = {
         ['<C-u>'] = false,
         ['<C-d>'] = false,
+        ['<C-j>'] = 'move_selection_next',
+        ['<C-k>'] = 'move_selection_previous',
+        ['<C-t>'] = 'file_tab',
+        ['<C-e>'] = 'edit_command_line',
+        ['<C-s>'] = 'edit_search_line',
       },
     },
   },
@@ -278,13 +141,13 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
 -- LSP settings.
---  This function gets build when an LSP connects to a particular buffer.
+--  This Function gets build when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
   --
-  -- In this case, we create a function that lets us more easily define mappings specific
+  -- In this case, we create a Function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
   local nmap = function(keys, func, desc)
     if desc then
@@ -341,11 +204,11 @@ local servers = {
   },
 
   rust_analyzer = {
-      ["rust-analyzer"] = {}
-    },
+    ["rust-analyzer"] = {}
+  },
   -- tsserver = {},
 
-  sumneko_lua = {
+  lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },

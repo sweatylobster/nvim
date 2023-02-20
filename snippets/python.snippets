@@ -1,0 +1,72 @@
+# Table of contents
+# SELENIUM
+#   import typical libraries : [S]elenium[W]ebelement[I]mports
+#   find element shorthand   : [S]elenium[W]ebelement[F]indElement
+# SKLEARN
+#   make pipeline and insert imputer : [SK]learn[P]ipeline[I]mport
+# PANDAS
+#   typical data cleaning routine like `drop_duplicates()`
+#   one-hot encode with `get_dummies()`
+# RECORDLINKAGE
+#   typical search for a string, numerical, etc.
+# SCIPY.STATS
+#   generate a given distribution and get a statistic back
+# NUMPY
+#   generate a distribution and 
+
+
+# Import all common selenium names
+snippet swi
+	/*
+	*
+	*/
+	from selenium import webdriver
+	from selenium.webdriver.common.by import By
+	from selenium.webdriver.support.wait import WebDriverWait
+	from selenium.webdriver.support import expected_conditions as EC
+
+	driver = webdriver.Firefox()
+	wait = WebDriverWait(driver, 10)
+	driver.get({$1})
+	try:
+	    element = wait.until(
+	        EC.presence_of_element_located((By.{$2}, {$3}))
+		)
+	finally:
+	    driver.quit()
+
+# Find element(s) by XPATH
+snippet dfx
+	/*
+	*
+	*/
+	driver.find_element${1}(By.XPATH, ${2})
+
+# make a pipeline for any kind of imputer
+snippet skpi
+        /*
+	*
+	*/
+	from sklearn.pipeline import make_pipeline
+	make_pipeline({$1})
+
+# pandas drop duplicates, other cleaning functions
+snippet pdd
+
+
+# scipy.stats generate a distribution 
+snippet ssd
+	\*
+	*
+	*/
+	from scipy.stats import ${1}
+
+# generate bootstrap samples for a dataframe
+
+# return the 
+snippet npb
+	\*
+	*
+	*/
+	from scipy.stats import ${1}
+

@@ -1,5 +1,12 @@
 -- See `:help vim.o`
 
+-- Hide .gitignore, .pyc files
+-- :help netrw-gitignore
+vim.g.netrw_list_hide = "netrw_gitignore#Hide()"
+
+-- Tree style
+vim.g.netrw_liststyle = 3
+
 -- Set the provider python variable
 vim.g.python3_host_prog = "/Users/maxde/anaconda3/python.exe"
 

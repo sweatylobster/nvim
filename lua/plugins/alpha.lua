@@ -41,7 +41,7 @@ return {
 	startify.button( "g", " Grep for a phrase", ":Telescope live_grep<CR>" ),
 	startify.button( "i", " Edit init.lua", ":edit ~/AppData/Local/nvim/init.lua <CR>" ),
 	startify.button( "r", " Make a remap", ":edit ~/AppData/Local/nvim/lua/max/remap.lua <CR>" ),
-	startify.button( "p", " Modify plugins", ":edit ~/AppData/Local/nvim/lua/plugins/init.lua <CR>" ),
+	startify.button( "p", " Modify plugins", ":edit ~/AppData/Local/nvim/lua/plugins <CR>" ),
       }
       -- disable MRU
       startify.section.mru.val = { { type = "padding", val = 0 } }

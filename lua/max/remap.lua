@@ -67,7 +67,16 @@ vim.keymap.set('n', '<leader><tab>]', vim.cmd.tabnext, { desc = '---> Next tab' 
 vim.keymap.set('n', '<leader><tab>[', vim.cmd.tabprev, { desc = '<--- Prev tab' })  -- [ or h
 vim.keymap.set('n', '<leader><tab>q', vim.cmd.tabclose, { desc = 'Quit tab' }) -- q or d
 
-vim.keymap.set('n', '<leader>l', ':Lazy<CR>')
+vim.keymap.set('n', '<leader>l', ':Lazy<CR>', { desc = "Open lazy menu" })
 
 -- ORIGINAL MAX THINGS
 -- yikes lol 2/19/2023
+
+-- Go to the Alpha shortcuts. Maybe remap them in the future
+vim.keymap.set('n', '<leader>A', ':Alpha <CR>', { desc = "Alpha homescreen" })
+
+-- start a netrw window in the right pane like one of the trees
+vim.keymap.set('n', '<leader>vv', ':vnew Explore <CR>', { desc = "Netrw explore tree" })
+
+-- Need a general Telescope binding
+vim.keymap.set('n', '<leader>t', ':Telescope <CR>', { desc = "Open Telescope" })

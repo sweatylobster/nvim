@@ -73,10 +73,12 @@ vim.keymap.set('n', '<leader>l', ':Lazy<CR>', { desc = "Open lazy menu" })
 -- yikes lol 2/19/2023
 
 -- Go to the Alpha shortcuts. Maybe remap them in the future
-vim.keymap.set('n', '<leader>A', ':Alpha <CR>', { desc = "Alpha homescreen" })
+vim.keymap.set('n', '<leader>h', ':Alpha <CR>', { desc = "Alpha homescreen" })
 
 -- start a netrw window in the right pane like one of the trees
 vim.keymap.set('n', '<leader>vv', ':vnew Explore <CR>', { desc = "Netrw explore tree" })
 
 -- Need a general Telescope binding
 vim.keymap.set('n', '<leader>t', ':Telescope <CR>', { desc = "Open Telescope" })
+
+vim.keymap.set('n', "<leader>py", ":pyfile % <CR>", { desc = "Execute python file"})

@@ -8,7 +8,7 @@ vim.g.netrw_list_hide = "*.bak, *.gitignore, *.pyc"
 -- Name, +time, wide, tree
 vim.g.netrw_liststyle = 0
 
-vim.o.shell = 'powershell'
+vim.o.shell = 'cmd'
 
 -- Set the provider python variable
 vim.g.python3_host_prog = "/Users/maxde/anaconda3/python.exe"

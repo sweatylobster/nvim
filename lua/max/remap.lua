@@ -82,3 +82,5 @@ vim.keymap.set('n', '<leader>vv', ':vnew Explore <CR>', { desc = "Netrw explore 
 vim.keymap.set('n', '<leader>t', ':Telescope <CR>', { desc = "Open Telescope" })
 
 vim.keymap.set('n', "<leader>py", ":pyfile % <CR>", { desc = "Execute python file"})
+
+vim.keymap.set("n", "<leader>vt", ":vert terminal <CR>", { desc = "[V]split [t]erminal"} )

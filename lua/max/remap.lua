@@ -11,6 +11,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- Use netrw and none of this other stuff
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = "Open netrw" })
+vim.keymap.set('n', '<leader>e', vim.cmd.Ex, { desc = "Open netrw" })
 vim.keymap.set('n', '<leader>pr', vim.cmd.Rexplore, { desc = "Return to buffer" })
 
 -- Center when moving or searching, stay put when joining
@@ -46,6 +47,7 @@ vim.keymap.set('', 'gt', ':tabedit <cfile><CR>', { desc = 'Tabedit the file unde
 
 -- Easy insertion of a trailing ; or , from insert mode
 -- Honestly this is clunky trash
+-- I tend to think when punctuating
 -- vim.keymap.set('i', ';;', '<Esc>A;<Esc>', { desc = "Trailing semi-colon" })
 -- vim.keymap.set('i', ',,', '<Esc>A,<Esc>', { desc = "Trailing comma" })
 

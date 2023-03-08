@@ -39,11 +39,11 @@ return {
       startify.section.top_buttons.val = {
 	startify.button( "s", " Search for files", ":Telescope <CR>" ),
 	startify.button( "g", " Grep for a phrase", ":Telescope live_grep<CR>" ),
-	startify.button( "i", " Edit init.lua", ":edit ~/AppData/Local/nvim/init.lua <CR>" ),
-	startify.button( "r", " Make a remap", ":edit ~/AppData/Local/nvim/lua/max/remap.lua <CR>" ),
-	startify.button( "o", " Change options", ":edit ~/AppData/Local/nvim/lua/max/options.lua <CR>" ),
-	startify.button( "p", " Modify plugins", ":edit ~/AppData/Local/nvim/lua/plugins <CR>" ),
-	startify.button( "a", " Change this screen", ":edit ~/AppData/Local/nvim/lua/plugins/alpha.lua <CR>" ),
+	startify.button( "i", " Edit init.lua", ":edit ~/.config/nvim/init.lua <CR>" ),
+	startify.button( "r", " Make a remap", ":edit ~/.config/nvim/lua/max/remap.lua <CR>" ),
+	startify.button( "o", " Change options", ":edit ~/.config/nvim/lua/max/options.lua <CR>" ),
+	startify.button( "p", " Modify plugins", ":edit ~/.config/nvim/lua/plugins <CR>" ),
+	startify.button( "a", " Change this screen", ":edit ~/.config/nvim/lua/plugins/alpha.lua <CR>" ),
       }
       -- disable MRU
       startify.section.mru.val = { { type = "padding", val = 0 } }

@@ -13,6 +13,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = "Open netrw" })
 vim.keymap.set('n', '<leader>e', vim.cmd.Ex, { desc = "Open netrw" })
 vim.keymap.set('n', '<leader>pr', vim.cmd.Rexplore, { desc = "Return to buffer" })
+vim.keymap.set('n', '<leader>re', vim.cmd.Rexplore, { desc = "Return to buffer" })
 
 -- Center when moving or searching, stay put when joining
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Stay put when joining"})

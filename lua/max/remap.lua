@@ -83,16 +83,8 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>')
 -- Go to the Alpha shortcuts. Maybe remap them in the future
 vim.keymap.set('n', '<leader>h', ':Alpha <CR>', { desc = "Alpha homescreen" })
 
--- start a netrw window in the right pane like one of the trees
-vim.keymap.set('n', '<leader>vv', ':vnew Explore <CR>', { desc = "Netrw explore tree" })
-
 -- Need a general Telescope binding
 vim.keymap.set('n', '<leader>t', ':Telescope <CR>', { desc = "Open Telescope" })
 
 -- Very self-explanatory
 vim.keymap.set('n', "<leader>py", ":pyfile % <CR>", { desc = "Execute python file"})
-
--- Kinda ridiculous considering you have floaterm tbh
-vim.keymap.set("n", "<leader>vt", ":vert terminal <CR>", { desc = "[V]split [t]erminal"} )
-
-vim.keymap.set("n", "<leader>lg", ":FloatermToggle lazygit <CR>", { desc = "Honestly idk" } )

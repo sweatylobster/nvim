@@ -3,8 +3,7 @@ return {
   config = function()
     vim.keymap.set('n', '<leader><esc>', ':FloatermToggle --name=main <CR>', { desc = "Quick terminal browser" })
     vim.keymap.set('t', '<leader><esc>', '<C-\\><C-n>:FloatermToggle --name=main <CR>', { desc = "Quick terminal browser" })
-    vim.keymap.set('t', '<esc>', '<C-\\><C-n>')
-    -- keybind sends vselected buffer contents to aforementioned ipython repl buffer
+    vim.keymap.set('x', '<leader>fs', ":'<,'>FloatermSend --name=repl")
     vim.cmd([[
     function Ipython()
       let g:ipython_bufnr=floaterm#terminal#get_bufnr('repl')

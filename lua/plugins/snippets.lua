@@ -2,14 +2,31 @@ return {
   'L3MON4D3/LuaSnip',
   config = function()
     local ls = require("luasnip")
-    -- some shorthands...
-    local snip = ls.snippet
-    local node = ls.snippet_node
-    local text = ls.text_node
-    local insert = ls.insert_node
-    local func = ls.function_node
-    local choice = ls.choice_node
-    local dynamicn = ls.dynamic_node
+    local s = ls.snippet
+    local sn = ls.snippet_node
+    local isn = ls.indent_snippet_node
+    local t = ls.text_node
+    local i = ls.insert_node
+    local f = ls.function_node
+    local c = ls.choice_node
+    local d = ls.dynamic_node
+    local r = ls.restore_node
+    local events = require("luasnip.util.events")
+    local ai = require("luasnip.nodes.absolute_indexer")
+    local extras = require("luasnip.extras")
+    local l = extras.lambda
+    local rep = extras.rep
+    local p = extras.partial
+    local m = extras.match
+    local n = extras.nonempty
+    local dl = extras.dynamic_lambda
+    local fmt = require("luasnip.extras.fmt").fmt
+    local fmta = require("luasnip.extras.fmt").fmta
+    local conds = require("luasnip.extras.expand_conditions")
+    local postfix = require("luasnip.extras.postfix").postfix
+    local types = require("luasnip.util.types")
+    local parse = require("luasnip.util.parser").parse_snippet
+    local ms = ls.multi_snippet
 
     -- for inodes
     local opts = { noremap = true, silent = true }
@@ -21,72 +38,69 @@ return {
     -- define the function used by the snippet 
     local date = function() return {os.date('%Y-%m-%d')} end
 
+    -- if male return "Mr." if female return "Ms."
+    -- local monsieur = function(arg)
+    --   if arg == "male" then return "Mr." end
+    --   if arg == "female" then return "Ms." end
+    -- end
+    --
     ls.add_snippets(nil, {
       all = {
 	-- add date to document
-	snip({
+	s({
 	  trig = "date",
 	  namr = "Date",
 	  dscr = "Date in the form of YYYY-MM-DD",
 	  }, {
-	    func(date, {}),
+	    f(date, {}),
 	}),
-	snip({
-	  trig = 'blank',
-	  namr = 'blank',
-	  dscr = 'fill something in with something',
-	  }, {
-	  text({})
-	}),
-	snip({
+	s({
 	  trig = "link",
 	  namr = "markdown_link",
 	  dscr = "Create markdown link [txt](url)"
 	  },
 	  {
-	    text('['),
-	    insert(1),
-	    text(']('),
-	    func(function(_, snip)
-	      return snip.env.TM_SELECTED_TEXT[1] or {}
+	    t('['),
+	    i(1),
+	    t(']('),
+	    f(function(_, s)
+	      return s.env.TM_SELECTED_TEXT[1] or {}
 	    end, {}),
-	    text(')'),
-	    insert(0),
+	    t(')'),
+	    i(0),
 	}),
-	snip({
+	s({
 	  trig = "meta",
 	  namr = "Metadata",
 	  dscr = "Yaml metadata format for markdown"
 	  },
 	  {
-	    text({"---",
-	      "title: "}), insert(1, "note_title"), text({"", 
-	      "author: "}), insert(2, "author"), text({"", 
-	      "date: "}), func(date, {}), text({"",
-	      "categories: ["}), insert(3, ""), text({"]",
-	      "lastmod: "}), func(date, {}), text({"",
-	      "tags: ["}), insert(4), text({"]",
+	    t({"---",
+	      "title: "}), i(1, "note_title"), t({"",
+	      "author: "}), i(2, "author"), t({"",
+	      "date: "}), f(date, {}), t({"",
+	      "categories: ["}), i(3, ""), t({"]",
+	      "lastmod: "}), f(date, {}), t({"",
+	      "tags: ["}), i(4), t({"]",
 	      "comments: true",
 	      "---", ""}),
-	    insert(0)
+	    i(0)
 	}),
-
-	snip({
-	  trig = "newsnip",
-	  namr = "NewSnippet",
-	  dscr = "Make a new snippet"
+	s({
+	  trig = "histintro",
 	  },
 	  {
-	    text({"snip({",
-	      "  trig = \""}), insert(3, "trig"), text({"\",", 
-	      "  namr = \""}), insert(2, "name"), text({"\",", 
-	      "  dscr = \""}), insert(1, "desc"), text({"\",",
-	      "  },",
-	      "  {",
-	      "    text({})",
-	      "})", ""}),
-	--snip({
-	})
+	    t({"The patient named "}),
+	    i(1, "PATIENT_NAME"),
+	    t({", a "}),
+	    i(2, "RIGHT_OR_LEFT"),
+	    t({"-hand dominant "}),
+	    i(3, "MALE_OR_FEMALE"),
+	    t({", presented today to my "}),
+	    i(0, "LOCATION"),
+	    t({" office for a comprehensive med-legal evaluation."}),
+	    -- f({fn{6}})
+	}),
       },
     })
   end,
@@ -106,4 +120,20 @@ return {
 --
 --     text({})
 -- })
+--
+-- snip({
+--   trig = "newsnip",
+--   namr = "NewSnippet",
+--   dscr = "Make a new snippet"
+--   },
+--   {
+--     text({"snip({",
+--       "  trig = \""}), insert(3, "trig"), text({"\",",
+--       "  namr = \""}), insert(2, "name"), text({"\",",
+--       "  dscr = \""}), insert(1, "desc"), text({"\",",
+--       "  },",
+--       "  {",
+--       "    text({})",
+--       "})", ""}),
+--
 --

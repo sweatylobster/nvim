@@ -21,17 +21,16 @@ return {
 
     vim.cmd([[
     function Lazygit()
-      let g:lazygit_bufnr=floaterm#terminal#get_bufnr('lazygit')
-      let g:buflist=floaterm#buflist#gather()
-      let g:ys = count(g:buflist, g:lazygit)
+      let g:lazygit_bufnr=floaterm#terminal#get_bufnr('lg')
+      let g:dabuflist=floaterm#buflist#gather()
+      let g:ys = count(g:dabuflist, g:lazygit_bufnr)
       if g:ys
-        :FloatermToggle lazygit
+        :FloatermToggle lg
       else
-        :FloatermNew --width=0.5 --height=0.8 --name=lazygit lazygit
+        :FloatermNew --width=0.95 --height=0.95 --name=lg lazygit
       endif
     endfunction
     ]])
-    vim.keymap.set('n', '<leader>gg', ":FloatermNew! --name=lazygit lazygit <CR>", { desc = "Lazygit lol" })
-    vim.keymap.set('t', '<leader>gg', "<C-\\><C-n>:FloatermToggle --name=lazygit <CR>", { desc = "Lazygit lol" })
+    vim.keymap.set('n', '<leader>gg', ":call Lazygit() <CR>", { desc = "Lazygit lol" })
   end
 }

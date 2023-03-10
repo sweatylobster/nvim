@@ -88,3 +88,5 @@ vim.keymap.set('n', '<leader>t', ':Telescope <CR>', { desc = "Open Telescope" })
 
 -- Very self-explanatory
 vim.keymap.set('n', "<leader>py", ":pyfile % <CR>", { desc = "Execute python file"})
+
+vim.keymap.set("n", "<leader>e", ":Rexplore <CR>", {desc = "Toggle netrw"})

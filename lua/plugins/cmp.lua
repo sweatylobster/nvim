@@ -2,7 +2,14 @@ return {
 
   {
     'hrsh7th/nvim-cmp',
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'hrsh7th/cmp-path', 'ray-x/cmp-treesitter', 'dmitmel/cmp-digraphs', 'hrsh7th/cmp-calc'},
+    dependencies = { 'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-path',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'ray-x/cmp-treesitter',
+      -- 'dmitmel/cmp-digraphs',
+      'hrsh7th/cmp-calc'},
+
     config = function ()
       -- nvim-cmp setup
       local cmp = require 'cmp'
@@ -42,10 +49,10 @@ return {
 	},
 	sources = {
 	  { name = 'nvim_lsp' },
+	  { name = 'path' },
 	  { name = 'luasnip' },
 	  { name = 'treesitter' },
-	  { name = 'path' },
-	  { name = 'digraphs' },
+	  -- { name = 'digraphs' },
 	  { name = 'calc' },
 	},
       }

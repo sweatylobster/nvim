@@ -42,7 +42,7 @@ snippet dfx
 	*/
 	driver.find_element${1}(By.XPATH, ${2})
 
-# make a pipeline for any kind of imputer
+# TODO: make a pipeline for any kind of imputer
 snippet skpi
         /*
 	*
@@ -50,11 +50,20 @@ snippet skpi
 	from sklearn.pipeline import make_pipeline
 	make_pipeline({$1})
 
-# pandas drop duplicates, other cleaning functions
+# TODO: pandas drop duplicates, other cleaning functions
 snippet pdd
 
 
-# scipy.stats generate a distribution 
+# TODO: scipy.stats generate a distribution relevant to a problem
+# we can make a functionnode that interviews the user!
+# e.g. P(A|B) = P(B|A) * P(A) / P(B)
+# So the typical A B being
+# rain, clouds ; clouds 'presage' rain
+# "Is the statement reversible?" -> chance of clouds given rain seems good
+# But where the hypothesis is "rain 'presages' no-shows"
+# "the chance of rain given no-shows" is not reversible
+# So this interview might be of importance, might suggest a different type of distribution
+# c.f. also C:\Users\maxde\code\interpreting\aguila\stats\finances.md
 snippet ssd
 	\*
 	*

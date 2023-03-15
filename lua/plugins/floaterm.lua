@@ -3,7 +3,8 @@ return {
   config = function()
     vim.keymap.set('n', '<leader><esc>', ':FloatermToggle --name=main <CR>', { desc = "Quick terminal browser" })
     vim.keymap.set('t', '<leader><esc>', '<C-\\><C-n>:FloatermToggle --name=main <CR>', { desc = "Quick terminal browser" })
-    vim.keymap.set('x', '<leader>fs', ":'<,'>FloatermSend --name=repl <CR>")
+    -- Maybe edit to <leader>fsi for ipython
+    vim.keymap.set('x', '<leader>fs', ":'<,'>FloatermSend --name=repl <CR>", { desc = "Send visual selection to ipython" })
     --TODO: Make a keymap to send *ONE* approved of ipython input to *A* buffer
     --NOTE: Strategy is probably to:
     -- list and name buffer windows
@@ -13,6 +14,12 @@ return {
     -- NOTE: Marker strategy would simply take the marker as argument when in floaterm
     -- vim.keymap.set("t", "<leader>fr", "", { desc = "[F]loaterm [R]etrieve/[F]etch to buffer such-and-such"})
     --TODO: Emend this to do several commands
+    -- FIX: But I only need to do this for ipython commands so far.
+    -- Therefore I'll just activate %autosource so that ipython resources the edited buffer every time the function is called.
+    -- This means that nvim is for editing with all comfort, and ipython for evaluatin n visualizin commands thank god
+    -- Now the question is whether fzf-lua is going to be useful for this project. But Telescope didn't come to mind
+    -- But wait also I don't need the past 15 lines because FloatermSend is to send functions
+    -- BRUH
 
     vim.cmd([[
     function Ipython()

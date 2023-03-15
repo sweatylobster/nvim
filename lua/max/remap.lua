@@ -9,12 +9,6 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Theprimeagen's stuff
 -- https://github.com/jessarcher/dotfiles/blob/master/nvim/lua/user/keymaps.lua
 
--- Use netrw and none of this other stuff
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = "Open netrw" })
-vim.keymap.set('n', '<leader>e', vim.cmd.Ex, { desc = "Open netrw" })
-vim.keymap.set('n', '<leader>pr', vim.cmd.Rexplore, { desc = "Return to buffer" })
-vim.keymap.set('n', '<leader>re', vim.cmd.Rexplore, { desc = "Return to buffer" })
-
 -- Center when moving or searching, stay put when joining
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Stay put when joining"})
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Center screen when scrolling"})
@@ -36,6 +30,12 @@ vim.keymap.set("v", "<leader>d", "\"_d", { desc = '[D]elete selection to black-h
 
 -- Replace word under cursor
 vim.keymap.set('n', '<leader>rw', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', { desc = '[R]eplace [w]ord under cursor' })
+
+-- TODO: Fuzzy find a word from the buffer to replace
+-- vim.keymaps.set('n', '<leader>rs' '', {desc = "[R]eplace [s]earch term"})
+-- function ()
+--   local search_selection = 
+-- end
 
 -- Jess Archer stuff
 -- https://github.com/jessarcher/dotfiles/blob/master/nvim/lua/user/keymaps.lua
@@ -90,3 +90,5 @@ vim.keymap.set('n', '<leader>t', ':Telescope <CR>', { desc = "Open Telescope" })
 vim.keymap.set('n', "<leader>py", ":pyfile % <CR>", { desc = "Execute python file"})
 
 vim.keymap.set("n", "<leader>e", ":Rexplore <CR>", {desc = "Toggle netrw"})
+
+vim.keymap.set("n", "<leader>F", ":FzfLua <CR>", {desc = "lua♡fzf"})

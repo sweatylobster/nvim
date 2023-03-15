@@ -50,7 +50,8 @@ return {
     -- Enable zoxide
     pcall(require('telescope').load_extension('zoxide'))
 
-    vim.keymap.set('n', '<leader>zl', ':Telescope zoxide list <CR>', { desc = "List files with telescope+zoxide" } )
+    -- Changing this binding from zl to zi because of the command line function [z]oxide [i]nteractive
+    vim.keymap.set('n', '<leader>zi', ':Telescope zoxide list <CR>', { desc = "List files with telescope+zoxide" } )
 
     -- See `:help telescope.builtin`
     vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -63,6 +64,7 @@ return {
       })
     end, { desc = '[/] Fuzzily search in current buffer]' })
 
+    vim.keymap.set('n', '<leader>sb', require('telescope.builtin').current_buffer_fuzzy_find, { desc = '[S]earch [B]uffer' })
     vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
     vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
     vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })

@@ -1,5 +1,7 @@
 return {
   'L3MON4D3/LuaSnip',
+  -- Try adding a range of python and other language snippets
+  dependencies = {'rafamadriz/friendly-snippets'},
   config = function()
     local ls = require("luasnip")
 

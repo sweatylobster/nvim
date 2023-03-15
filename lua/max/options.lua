@@ -3,13 +3,13 @@
 -- Hide .gitignore, .pyc files
 -- :help netrw-gitignore
 -- Need to write lua patterns, lua lsp is linting
-vim.g.netrw_list_hide = "*.bak, *.gitignore, *.pyc"
+vim.g.netrw_list_hide = "*.bak, *.gitignore, *.pyc, *.git"
 
 -- Name, +time, wide, tree
 vim.g.netrw_liststyle = 0
 
 -- Set the provider python variable
-vim.g.python3_host_prog = "/Users/maxde/anaconda3/python.exe"
+vim.g.python3_host_prog = "$PYTHON3_HOST_PROG"
 
 -- Set highlight on search
 vim.o.hlsearch = false

@@ -24,13 +24,14 @@ return {
 	f = { ":e $NVIM_CONFIG/lua/plugins/floaterm.lua<cr>", "Floaterm"},
 	s = { ":e $NVIM_CONFIG/lua/plugins/snippets.lua<cr>", "LuaSnip"},
 	t = { ":e $NVIM_CONFIG/lua/plugins/telescope.lua<cr>", "Telescope"},
-	x = { ":e $NVIM_CONFIG/lua/plugins/vimtex.lua<cr>", "VimTex"},
+	x = { ":e $NVIM_CONFIG/lua/plugins/vimtex.lua<cr>", "VimTeX"},
 	w = { ":e $NVIM_CONFIG/lua/plugins/which-key.lua<cr>", "WhichKey"},
       },
       r = { name = "replace"},
       s = { name = "search"},
+      t = { name = "TeX"},
       w = { name = "workspace"},
-      s = { name = "trouble"},
+      x = { name = "trouble"},
       z = { name = "zoxide", },
     }, { prefix = "<leader>"})
     wk.setup({

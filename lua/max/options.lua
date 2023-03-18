@@ -9,7 +9,7 @@ vim.g.netrw_list_hide = "*.bak, *.gitignore, *.pyc, *.git"
 vim.g.netrw_liststyle = 0
 
 -- Set the provider python variable
-vim.g.python3_host_prog = "$PYTHON3_HOST_PROG"
+vim.g.python3_host_prog = "$CONDA_PYTHON_HOST_PROG"
 
 -- Set highlight on search
 vim.o.hlsearch = false

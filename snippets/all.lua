@@ -86,5 +86,18 @@ ls.add_snippets(nil, {
         t({" office for a comprehensive med-legal evaluation."}),
         -- f({fn{6}})
       }),
-  },
+    s({
+      trig  = "valley",
+    },
+      {
+        t({"Hello "}),
+        i(0, "INTERPRETER_NAME"),
+        t({",", "My name is Max de Hoyos. "}),
+        t({"I'm hiring certified Spanish medical interpreters to work full days in the valley. "}),
+        t({"The days would be Tuesday, Wednesday, & Friday 8AM - 3PM, and Saturday 8AM to 1PM. "}),
+        t({"Give me a call and we can see if we're a good fit.", "", ""}),
+        t({"Sincerely,", ""}),
+        t({"Max de Hoyos (818)661-0177"}),
+      }),
+}
 })

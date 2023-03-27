@@ -7,7 +7,7 @@ return {
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
       'ray-x/cmp-treesitter',
-      -- 'dmitmel/cmp-digraphs',
+      'dmitmel/cmp-digraphs',
       'hrsh7th/cmp-calc'},
 
     config = function ()
@@ -52,7 +52,7 @@ return {
 	  { name = 'path' },
 	  { name = 'luasnip' },
 	  { name = 'treesitter' },
-	  -- { name = 'digraphs' },
+	  { name = 'digraphs' },
 	  { name = 'calc' },
 	},
       }

@@ -11,7 +11,7 @@ return {
       if count(floaterm#buflist#gather(), floaterm#terminal#get_bufnr('repl'))
         :FloatermToggle repl
       else
-        :FloatermNew --width=0.5 --height=0.8 --name=repl ipython --profile="nvim"
+        :FloatermNew --width=0.95 --height=0.95 --name=repl ipython --profile="nvim"
       endif
     endfunction
     ]])

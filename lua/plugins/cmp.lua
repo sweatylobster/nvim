@@ -54,7 +54,7 @@ return {
 	  { name = 'path' },
 	  { name = 'luasnip' },
 	  { name = 'treesitter' },
-	  { name = 'digraphs' },
+	  -- { name = 'digraphs' },
 	  { name = 'calc' },
 	},
       }

@@ -87,8 +87,12 @@ vim.keymap.set('n', '<leader>h', ':Alpha <CR>', { desc = "Alpha homescreen" })
 vim.keymap.set('n', '<leader>t', ':Telescope <CR>', { desc = "Open Telescope" })
 
 -- Netrw bindings
-vim.keymap.set("n", "<leader>e", ":Rexplore <CR>", {desc = "Toggle netrw"})
-vim.keymap.set("n", "<leader>E", ":Explore <CR>", {desc = "Toggle netrw"})
+vim.keymap.set("n", "<leader>e", ":Explore <CR>", {desc = "Toggle netrw"})
+-- vim.keymap.set("n", "<leader>E", ":Explore <CR>", {desc = "Toggle netrw"})
 
 -- FzfLua bindings c.f. $NVIM_CONFIG/lua/plugins/fzf.lua
-vim.keymap.set("n", "<leader>F", ":FzfLua <CR>", {desc = "lua♡fzf"})
+-- vim.keymap.set("n", "<leader>F", ":FzfLua <CR>", {desc = "lua♡fzf"})
+
+-- Finally vim-easy-align
+vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)')
+vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)')

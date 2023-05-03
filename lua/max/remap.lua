@@ -96,3 +96,12 @@ vim.keymap.set("n", "<leader>e", ":Explore <CR>", {desc = "Toggle netrw"})
 -- Finally vim-easy-align
 vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)')
 vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)')
+
+-- emacs shit for command mode
+vim.keymap.set('c', '<C-a>', '<Home>')
+vim.keymap.set('c', '<C-e>', '<End>')
+vim.keymap.set('c', '<C-b>', '<Left>')
+vim.keymap.set('c', '<C-f>', '<Right>')
+vim.keymap.set('c', '<A-b>', '<S-Left>')
+vim.keymap.set('c', '<A-f>', '<S-Right>')
+vim.keymap.set('c', '<C-d>', '<Del>')

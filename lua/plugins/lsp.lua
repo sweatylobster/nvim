@@ -65,7 +65,7 @@ return{
       local servers = {
 	clangd = {},
 	-- gopls = {},
-	zls = {},
+	-- zls = {},
 	pylsp = {
 	  plugins = {
 	    pycodestyle = {

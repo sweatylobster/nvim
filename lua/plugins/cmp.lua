@@ -58,7 +58,6 @@ return {
 	  { name = 'treesitter' },
 	  -- { name = 'digraphs' },
 	  { name = 'calc' },
-	  { name = 'cmdline' },
 	},
       }
 

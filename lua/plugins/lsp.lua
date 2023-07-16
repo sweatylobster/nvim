@@ -7,7 +7,7 @@ return{
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       -- Useful status updates for LSP
-      'j-hui/fidget.nvim',
+      {'j-hui/fidget.nvim', tag="legacy"},
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',},
     config = function()
@@ -64,7 +64,7 @@ return{
       --  the `settings` field of the server config. You must look up that documentation yourself.
       local servers = {
 	clangd = {},
-	-- gopls = {},
+	gopls = {},
 	-- zls = {},
 	pylsp = {
 	  plugins = {

@@ -70,12 +70,12 @@ vim.keymap.set('n', '<leader><tab>]', vim.cmd.tabnext, { desc = '---> Next tab' 
 vim.keymap.set('n', '<leader><tab>[', vim.cmd.tabprev, { desc = '<--- Prev tab' })  -- [ or h
 vim.keymap.set('n', '<leader><tab>q', vim.cmd.tabclose, { desc = 'Quit tab' }) -- q or d
 
-vim.keymap.set('n', '<leader>l', ':Lazy<CR>', { desc = "Open lazy menu" })
+vim.keymap.set('n', '<leader>L', ':Lazy<CR>', { desc = "Open lazy menu" })
 
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>')
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>')
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>')
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>')
+vim.keymap.set('n', '<A-h>', '<C-w><C-h>')
+vim.keymap.set('n', '<A-j>', '<C-w><C-j>')
+vim.keymap.set('n', '<A-k>', '<C-w><C-k>')
+vim.keymap.set('n', '<A-l>', '<C-w><C-l>')
 
 -- ORIGINAL MAX THINGS
 -- yikes lol 2/19/2023
@@ -105,3 +105,7 @@ vim.keymap.set('c', '<C-f>', '<Right>')
 vim.keymap.set('c', '<A-b>', '<S-Left>')
 vim.keymap.set('c', '<A-f>', '<S-Right>')
 vim.keymap.set('c', '<C-d>', '<Del>')
+
+vim.keymap.set('n', '<C-k>', ':NoiceDismiss<CR>')
+
+vim.keymap.set('n', '<leader>P', ':pyfile % <CR>')

@@ -23,7 +23,7 @@ require('lazy').setup('plugins')
 require('max')
 
 -- Load my snippets bro
-require("luasnip.loaders.from_lua").load({ paths = vim.env.NVIM_CONFIG .. "/snippets"})
+require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets"})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

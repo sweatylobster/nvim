@@ -27,7 +27,7 @@ return {
     ]])
     -- Define a main terminal
     vim.keymap.set('n', '<leader><esc>', ':call MainTerminal()<CR>', { desc = "Quick terminal browser" })
-    vim.keymap.set('t', '<leader><esc>', '<C-\\><C-n>:call MainTerminal()<CR>', { desc = "Quick terminal browser" })
+    vim.keymap.set('t', '<leader><esc>', '<C-\\><C-n> <bar> :call MainTerminal()<CR>', { desc = "Quick terminal browser" })
 
     vim.cmd([[
     function Ipython()
@@ -39,7 +39,7 @@ return {
     endfunction
     ]])
     vim.keymap.set("n", "<leader>fi", ":call Ipython()<CR>", { desc = "Open or close ipython buffer" })
-    vim.keymap.set("t", "<leader>fi", "<C-\\><C-n> :call Ipython()<CR>", { desc = "Open or close ipython buffer" })
+    vim.keymap.set("t", "<leader>fi", "<C-\\><C-n> <bar> :call Ipython()<CR>", { desc = "Open or close ipython buffer" })
 
     vim.cmd([[
     function Lazygit()

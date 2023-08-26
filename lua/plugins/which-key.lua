@@ -10,7 +10,7 @@ return {
       c = { name = "code"},
       d = { name = "document"},
       g = { name = "git"},
-      l = { name = "lazy"},
+      L = { name = "lazy"},
       f = { name = "floaterm"},
       fz = {
 	name = "fzf",

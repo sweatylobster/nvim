@@ -97,15 +97,31 @@ vim.keymap.set("n", "<leader>e", ":Explore <CR>", {desc = "Toggle netrw"})
 vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)')
 vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)')
 
--- emacs shit for command mode
-vim.keymap.set('c', '<C-a>', '<Home>')
-vim.keymap.set('c', '<C-e>', '<End>')
-vim.keymap.set('c', '<C-b>', '<Left>')
-vim.keymap.set('c', '<C-f>', '<Right>')
-vim.keymap.set('c', '<A-b>', '<S-Left>')
-vim.keymap.set('c', '<A-f>', '<S-Right>')
-vim.keymap.set('c', '<C-d>', '<Del>')
+-- emacs shit for command and insert mode
+vim.keymap.set({'c', 'i'}, '<C-a>', '<Home>')
+vim.keymap.set({'c', 'i'}, '<C-e>', '<End>')
+vim.keymap.set({'c', 'i'}, '<C-b>', '<Left>')
+vim.keymap.set({'c', 'i'}, '<C-f>', '<Right>')
+vim.keymap.set({'c', 'i'}, '<A-b>', '<S-Left>')
+vim.keymap.set({'c', 'i'}, '<A-f>', '<S-Right>')
+vim.keymap.set({'c', 'i'}, '<C-d>', '<Del>')
 
-vim.keymap.set('n', '<C-k>', ':NoiceDismiss<CR>')
+vim.keymap.set('n', '<leader>j', ':NoiceDismiss <CR>')
 
 vim.keymap.set('n', '<leader>P', ':pyfile % <CR>')
+
+vim.keymap.set('n', '<leader>nt', ':NoiceTelescope <CR>')
+
+-- run current file
+vim.keymap.set('n', '<leader>b', function ()
+  local path = vim.fn.expand("%")
+  if vim.bo.filetype == 'lua' then
+    vim.cmd("luafile " .. path)
+  elseif vim.bo.filetype == 'python' then
+    vim.cmd("pyfile " .. path)
+  end
+  end)
+
+vim.keymap.set("n", "<leader>alg", function ()
+  require('max.adder').choose()
+end)

@@ -43,3 +43,6 @@ vim.cmd [[colorscheme tokyonight-night]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
+
+vim.o.spelllang = 'en_us'
+vim.o.spell = true

@@ -5,8 +5,8 @@ return {
     {'junegunn/fzf', build = ":call fzf#install()"}},
   config = function()
     -- Switch between floating terminals
-    vim.keymap.set('n', "<leader>ff", ":Floaterms", { desc = "fzf-floaterms" })
-    vim.keymap.set('t', "<leader>ff", "<C-\\><C-n>:Floaterms", { desc = "fzf-floaterms" })
+    vim.keymap.set('n', "<leader>ff", ":Floaterms <cr>", { desc = "fzf-floaterms" })
+    vim.keymap.set('t', "<leader>ff", "<C-\\><C-n>:Floaterms <cr>", { desc = "fzf-floaterms" })
 
     -- Maybe edit to <leader>fsi for ipython
     vim.keymap.set('x', '<leader>fs', ":'<,'>FloatermSend --name=repl <CR>", { desc = "Send visual selection to ipython" })
@@ -14,45 +14,82 @@ return {
     -- Use fzf to yank the current ipython session's inputs
     vim.keymap.set('n', '<leader>fph', ":lua print('Store ipython_history into a table') <CR>", { desc="fzf python history yanker" })
 
-    -- TODO: Implement all of these with a single lua function and table arguments
-    -- This is only necessary on Windows, really, since I should do this with a tmux floating window.
-    vim.cmd([[
-    function MainTerminal()
-      if count(floaterm#buflist#gather(), floaterm#terminal#get_bufnr('main'))
-        :FloatermToggle main
-      else
-        :FloatermNew --width=0.67 --height=0.67 --name=main
-      endif
-    endfunction
-    ]])
-    -- Define a main terminal
-    vim.keymap.set('n', '<leader><esc>', ':call MainTerminal()<CR>', { desc = "Quick terminal browser" })
-    vim.keymap.set('t', '<leader><esc>', '<C-\\><C-n> <bar> :call MainTerminal()<CR>', { desc = "Quick terminal browser" })
+    local function parse_opts(opts)
+      local results = {}
+      for k, v in pairs(opts) do
+        if k ~= "cmd" then
+          table.insert(results, '--'..k..'='..v)
+        end
+      end
+      return table.concat(results, " ")
+    end
 
-    vim.cmd([[
-    function Ipython()
-      if count(floaterm#buflist#gather(), floaterm#terminal#get_bufnr('repl'))
-        :FloatermToggle repl
+    local function toggle_floaterm(floaterm)
+      local floaterm_exists = vim.api.nvim_call_function('floaterm#terminal#get_bufnr', {floaterm.name})
+      local parsed = parse_opts(floaterm)
+      if tonumber(floaterm_exists) == -1 then
+        local command = string.format(':FloatermNew %s %s', parsed, floaterm.cmd)
+        vim.print(command)
+        vim.cmd(command)
       else
-        :FloatermNew --width=0.95 --height=0.95 --name=repl ipython --profile="nvim"
-      endif
-    endfunction
-    ]])
-    vim.keymap.set("n", "<leader>fi", ":call Ipython()<CR>", { desc = "Open or close ipython buffer" })
-    vim.keymap.set("t", "<leader>fi", "<C-\\><C-n> <bar> :call Ipython()<CR>", { desc = "Open or close ipython buffer" })
+        vim.cmd(string.format(':FloatermToggle %s', floaterm.name))
+      end
+    end
 
-    vim.cmd([[
-    function Lazygit()
-      if count(floaterm#buflist#gather(), floaterm#terminal#get_bufnr('lg'))
-        :FloatermToggle lg
-      else
-        :FloatermNew --width=0.95 --height=0.95 --name=lg lazygit
-      endif
-    endfunction
-    ]])
-    vim.keymap.set('n', '<leader>gg', ":call Lazygit() <CR>", { desc = "Lazygit lol" })
-    vim.keymap.set('t', '<leader>gg', "<C-\\><C-n> :call Lazygit() <CR>", { desc = "Lazygit lol" })
+    local function make_term_and_normal_mappings(t)
+      vim.keymap.set({'n', 't'}, t.maps.lhs, function()
+        toggle_floaterm(t.floaterm)
+      end, {desc = t.maps.desc})
+    end
 
-    vim.keymap.set('n', '<leader>tt', ':FloatermNew --autoclose=1 pdflatex % <CR>')
+    local main = {
+      floaterm = {
+        width  = 0.67,
+        height = 0.67,
+        name   = 'main',
+        autoclose = 0,
+        cmd    = ' ',
+      },
+      maps   = {
+        lhs  = '<F2>',
+        desc = 'Quick terminal browser :) :) :) :)'
+      }
+    }
+
+    local ipython = {
+      floaterm = {
+        width     = 0.67,
+        height    = 0.67,
+        name      = 'ipython',
+        autoclose = 1,
+        wintype   = 'vsplit',
+        cmd       = 'ipython --profile="nvim"',
+      },
+      maps   = {
+        lhs  = '<leader>fi',
+        desc = 'Ipython repl in vsplit mode'
+      }
+    }
+
+    local lazygit = {
+      floaterm = {
+        width  = 0.67,
+        height = 0.67,
+        name   = 'lazygit',
+        autoclose = 1,
+        cmd    = 'lazygit',
+      },
+      maps   = {
+        lhs  = '<leader>gg',
+        desc = 'Lazygit :)'
+      }
+    }
+
+    local floaterm_configs = {main, lazygit, ipython}
+
+    for _, config in pairs(floaterm_configs) do
+      make_term_and_normal_mappings(config)
+    end
+
   end
 }

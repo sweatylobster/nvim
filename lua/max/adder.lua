@@ -33,8 +33,7 @@ function M.filter(t)
       l = l:gsub("(,%sD%.C%.)", "")
       l = l:gsub(",%sL%.Ac", "")
       l = l:gsub("Tae Young", "Young Tae")
-      local MMDDYYYY, YYYYMMDD = os.date("%m-%d-%Y"), os.date("%Y-%m-%d")
-      l = l:gsub(MMDDYYYY, YYYYMMDD)
+      if l == date then l = os.date("%Y-%m-%d") end
       table.insert(lines, l)
     end
     -- insert index i

@@ -108,8 +108,6 @@ vim.keymap.set({'c', 'i'}, '<C-d>', '<Del>')
 
 vim.keymap.set('n', '<leader>j', ':NoiceDismiss <CR>')
 
-vim.keymap.set('n', '<leader>P', ':pyfile % <CR>')
-
 vim.keymap.set('n', '<leader>nt', ':NoiceTelescope <CR>')
 
 -- run current file

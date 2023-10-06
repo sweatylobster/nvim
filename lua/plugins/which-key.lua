@@ -9,7 +9,12 @@ return {
     wk.register({
       c = { name = "code"},
       d = { name = "document"},
-      g = { name = "git"},
+      g = { name = "git",
+	f = { function ()
+	  require('telescope.builtin').git_files()
+	end, "find files",
+	}
+      },
       l = { name = "latex",
 	-- NOTE:  current tex file -> print pdf 
 	p = {function() local filename = vim.fn.expand('%:r') os.execute('lpr '..filename..".pdf") end, "lpr "..vim.fn.expand('%:r')..".pdf"},
@@ -21,15 +26,13 @@ return {
 	f = { "<cmd>FzfLua files<cr>", "find files" },
 	r = { "<cmd>FzfLua oldfiles<cr>", "recent files"},
       },
-      p = {
-	name = "plugins",
-	a = { ":e $NVIM_CONFIG/lua/plugins/alpha.lua<cr>", "Alpha"},
-	c = { ":e $NVIM_CONFIG/lua/plugins/cmp.lua<cr>", "Cmp"},
-	f = { ":e $NVIM_CONFIG/lua/plugins/floaterm.lua<cr>", "Floaterm"},
-	s = { ":e $NVIM_CONFIG/lua/plugins/snippets.lua<cr>", "LuaSnip"},
-	t = { ":e $NVIM_CONFIG/lua/plugins/telescope.lua<cr>", "Telescope"},
-	x = { ":e $NVIM_CONFIG/lua/plugins/vimtex.lua<cr>", "VimTeX"},
-	w = { ":e $NVIM_CONFIG/lua/plugins/which-key.lua<cr>", "WhichKey"},
+      P = { function ()
+	-- define a picker and show local config = { preview = true }
+	local home = os.getenv("HOME")
+	local opts = {cwd = home.."/.config/nvim/lua/plugins"}
+	-- seems like this picker has a previewer by default
+	require('telescope.builtin').fd(opts)
+      end, "Telescope plugins"
       },
       r = { name = "replace"},
       s = { name = "search"},

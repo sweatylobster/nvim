@@ -31,13 +31,18 @@ local date = function() return {os.date('%Y-%m-%d')} end
 
 ls.add_snippets(nil, {
   all = {
-    s({trig = "nodis"}, {
+    s({trig = "nodis", desc = "State that the patient has no diseases."}, {
       t({"The patient has no known history of heart disease, high blood pressure, kidney disease, diabetes, tuberculosis, cancer, ulcers, pneumonia, lung disease, eye problems, skin problems, asthma, hepatitis, liver disease, thyroid disease, gout, rheumatoid arthritis, Lupus, or arthritis."}),
     }),
-    s({trig = "noinj"}, c(1, {
+    s({trig = "noinjwr", desc = "No work-related injuries."}, c(1, {
       t"The patient denies having sustained any work-related injuries.",
-      t"The patient denies having sustained any personal, sports-related, or motor-vehicle injuries.",
     })),
+    s({trig = "noinjper", desc = "No MVA or personal injuries."}, {
+      t({"The patient denies having sustained any personal, sports-related, or motor-vehicle injuries."}),
+    }),
+    s({trig = "dmg"}, {
+      t({"prolonged standing and sitting, continuous fine manipulation of the hands and fingers, gripping, grasping, pulling, pushing, twisting, turning, torquing, dragging, stooping, squatting, working overhead, and lifting up to 40 pounds"}),
+    }),
     s("trig", c(1, {
       t("Ugh boring, a text node"),
       i(nil, "At least I can edit something now..."),
@@ -45,3 +50,4 @@ ls.add_snippets(nil, {
     })),
   }
 })
+

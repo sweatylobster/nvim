@@ -6,7 +6,9 @@ local fzf_helpers = require('fzf.helpers')
 -- get the list of unique patients from the schedule
 local date = os.date("%m-%d-%Y")
 
-local filename = "/home/max/code/aguila/billing/come/upcoming.json"
+local aguila = os.getenv("AGUILA")
+
+local filename = aguila.."/billing/come/upcoming.json"
 
 local jq_unique_patients = string.format(
   [[jq --arg date %s 'map(select(.dos | test($date))) | .[].name' -r %s]],

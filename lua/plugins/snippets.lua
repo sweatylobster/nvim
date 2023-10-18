@@ -10,13 +10,7 @@ return {
       history = true,
       updateevents = "TextChanged, TextChangedI",
       enable_autosnippets = true,
-      ext_opts = {
-	[require("luasnip.util.types").choiceNode] = {
-	  active = {
-	    virt_text = { { "haha", "Gruvbox Orange" } },
-	  },
-	},
-      },
+      ext_opts = {},
     })
 
     -- move around in inodes
@@ -34,3 +28,12 @@ return {
 
   end
 }
+
+-- these were ext_opts!!!!!!
+-- {
+-- 	[require("luasnip.util.types").choiceNode] = {
+-- 	  active = {
+-- 	    virt_text = { { "haha", "Gruvbox Orange" } },
+-- 	  },
+-- 	},
+--       }

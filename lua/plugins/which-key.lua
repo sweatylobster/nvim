@@ -17,7 +17,11 @@ return {
       },
       l = { name = "latex",
 	-- NOTE:  current tex file -> print pdf 
-	p = {function() local filename = vim.fn.expand('%:r') os.execute('lpr '..filename..".pdf") end, "lpr "..vim.fn.expand('%:r')..".pdf"},
+	p = {
+	  function()
+	    local filename = vim.fn.expand('%:r')
+	    os.execute('lpr '..filename..".pdf")
+	  end, "lpr "..vim.fn.expand("%:r")..".pdf"},
       },
       L = { name = "lazy"},
       f = { name = "floaterm"},

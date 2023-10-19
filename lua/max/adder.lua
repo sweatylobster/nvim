@@ -39,7 +39,7 @@ function M.filter(t)
       table.insert(lines, l)
     end
     -- insert index i
-    table.insert(lines, "Erica Gonzalez #019816")
+    table.insert(lines, "Erika Gonzalez #019816")
     table.insert(lines, i)
 
     -- save as a string

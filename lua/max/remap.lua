@@ -77,6 +77,11 @@ vim.keymap.set('n', '<A-j>', '<C-w><C-j>')
 vim.keymap.set('n', '<A-k>', '<C-w><C-k>')
 vim.keymap.set('n', '<A-l>', '<C-w><C-l>')
 
+vim.keymap.set('t', '<A-h>', '<C-\\><C-n><C-w><C-h>')
+vim.keymap.set('t', '<A-j>', '<C-\\><C-n><C-w><C-j>')
+vim.keymap.set('t', '<A-k>', '<C-\\><C-n><C-w><C-k>')
+vim.keymap.set('t', '<A-l>', '<C-\\><C-n><C-w><C-l>')
+
 -- ORIGINAL MAX THINGS
 -- yikes lol 2/19/2023
 

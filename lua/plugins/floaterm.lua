@@ -9,7 +9,8 @@ return {
     vim.keymap.set('t', "<leader>ff", "<C-\\><C-n>:Floaterms <cr>", { desc = "fzf-floaterms" })
 
     -- Maybe edit to <leader>fsi for ipython
-    vim.keymap.set('x', '<leader>fs', ":'<,'>FloatermSend --name=repl <CR>", { desc = "Send visual selection to ipython" })
+    -- TODO: make this a function to send to an arbitrary buffer with Telescope or fzf-floaterms
+    vim.keymap.set('x', '<leader>fs', ":'<,'>FloatermSend --name=ipython <CR>", { desc = "Send visual selection to ipython" })
 
     -- Use fzf to yank the current ipython session's inputs
     vim.keymap.set('n', '<leader>fph', ":lua print('Store ipython_history into a table') <CR>", { desc="fzf python history yanker" })
@@ -85,7 +86,22 @@ return {
       }
     }
 
-    local floaterm_configs = {main, lazygit, ipython}
+    local python = {
+      floaterm = {
+        width     = 0.67,
+        height    = 0.67,
+        name      = 'pycurrent-buffer',
+        position  = 'topright',
+        autoclose = 1,
+        cmd       = 'python '..vim.fn.expand("%"),
+      },
+      maps   = {
+        lhs  = '<F4>',
+        desc = 'Run the current pyfile in a floaterm'
+      }
+    }
+
+    local floaterm_configs = {main, lazygit, ipython, python}
 
     for _, config in pairs(floaterm_configs) do
       make_term_and_normal_mappings(config)

@@ -50,8 +50,8 @@ return {
     -- Enable zoxide
     pcall(require('telescope').load_extension('zoxide'))
 
-    -- Changing this binding from zl to zi because of the command line function [z]oxide [i]nteractive
-    vim.keymap.set('n', '<leader>zi', ':Telescope zoxide list <CR>', { desc = "List files with telescope+zoxide" } )
+    -- Changing this binding from zi to z because zi is annoying
+    vim.keymap.set('n', '<leader>z', ':Telescope zoxide list <CR>', { desc = "List files with telescope+zoxide" } )
 
     -- See `:help telescope.builtin`
     vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })

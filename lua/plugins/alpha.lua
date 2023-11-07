@@ -52,6 +52,7 @@ return {
 	startify.button( "o", " Change options", ":edit ~/.config/nvim/lua/max/options.lua <CR>" ),
 	startify.button( "p", " Modify plugins", ":edit ~/.config/nvim/lua/plugins <CR>" ),
 	startify.button( "a", " Change this screen", ":edit ~/.config/nvim/lua/plugins/alpha.lua <CR>" ),
+	startify.button( "z", " Jump to a directory", ":Telescope zoxide list <CR>" ),
       }
       -- disable MRU
       startify.section.mru.val = { { type = "padding", val = 0 } }

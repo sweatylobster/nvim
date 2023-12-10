@@ -9,7 +9,11 @@ vim.g.netrw_list_hide = "*.bak, *.gitignore, *.pyc, *.git"
 vim.g.netrw_liststyle = 0
 
 -- Set the provider python variable
-vim.g.python3_host_prog = "python"
+vim.g.python3_host_prog = os.getenv('HOME') .. "/anaconda3/bin/python"
+
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
 
 -- Set highlight on search
 vim.o.hlsearch = false
@@ -39,7 +43,7 @@ vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
-vim.cmd [[colorscheme tokyonight-night]]
+vim.cmd [[colorscheme catppuccin-mocha]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'

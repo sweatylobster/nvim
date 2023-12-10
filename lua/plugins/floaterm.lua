@@ -18,7 +18,7 @@ return {
     local function parse_opts(opts)
       local results = {}
       for k, v in pairs(opts) do
-        if k ~= "cmd" then
+        if k ~= "cmd" then -- do not parse e.g., 'ipython -i my_script.py', as a command-line option
           table.insert(results, '--'..k..'='..v)
         end
       end
@@ -48,7 +48,7 @@ return {
         width  = 0.67,
         height = 0.67,
         name   = 'main',
-        autoclose = 0,
+        autoclose = 1,
         cmd    = ' ',
       },
       maps   = {
@@ -63,12 +63,12 @@ return {
         height    = 0.67,
         name      = 'ipython',
         autoclose = 1,
-        wintype   = 'vsplit',
+        -- wintype   = 'vsplit',
         cmd       = 'ipython --profile="nvim"',
       },
       maps   = {
-        lhs  = '<leader>fi',
-        desc = 'Ipython repl in vsplit mode'
+        lhs  = '<leader>fI',
+        desc = 'Floating Ipython repl'
       }
     }
 

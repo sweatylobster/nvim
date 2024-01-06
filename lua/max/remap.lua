@@ -72,15 +72,15 @@ vim.keymap.set('n', '<leader><tab>q', vim.cmd.tabclose, { desc = 'Quit tab' }) -
 
 vim.keymap.set('n', '<leader>L', ':Lazy<CR>', { desc = "Open lazy menu" })
 
-vim.keymap.set('n', '<A-h>', '<C-w><C-h>')
-vim.keymap.set('n', '<A-j>', '<C-w><C-j>')
-vim.keymap.set('n', '<A-k>', '<C-w><C-k>')
-vim.keymap.set('n', '<A-l>', '<C-w><C-l>')
-
-vim.keymap.set('t', '<A-h>', '<C-\\><C-n><C-w><C-h>')
-vim.keymap.set('t', '<A-j>', '<C-\\><C-n><C-w><C-j>')
-vim.keymap.set('t', '<A-k>', '<C-\\><C-n><C-w><C-k>')
-vim.keymap.set('t', '<A-l>', '<C-\\><C-n><C-w><C-l>')
+vim.keymap.set('n', '<A-h>', ':TmuxNavigateLeft<cr>', { silent = true })
+vim.keymap.set('n', '<A-j>', ':TmuxNavigateDown<cr>', { silent = true })
+vim.keymap.set('n', '<A-k>', ':TmuxNavigateUp<cr>', { silent = true })
+vim.keymap.set('n', '<A-l>', ':TmuxNavigateRight<cr>', { silent = true })
+--
+-- vim.keymap.set('t', '<A-h>', '<C-\\><C-n><C-w><C-h>')
+-- vim.keymap.set('t', '<A-j>', '<C-\\><C-n><C-w><C-j>')
+-- vim.keymap.set('t', '<A-k>', '<C-\\><C-n><C-w><C-k>')
+-- vim.keymap.set('t', '<A-l>', '<C-\\><C-n><C-w><C-l>')
 
 -- ORIGINAL MAX THINGS
 -- yikes lol 2/19/2023
@@ -128,3 +128,7 @@ vim.keymap.set('n', '<leader>b', function ()
 vim.keymap.set("n", "<leader>alg", function ()
   require('max.adder').choose()
 end)
+
+vim.keymap.set("v", "<leader>W", ":'<,'>w ! <CR>", {desc="Send visual selection to an external command."})
+
+vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis <CR>", {desc="Do a git diff of the current buffer."})

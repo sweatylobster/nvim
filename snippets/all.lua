@@ -27,7 +27,7 @@ local ms = ls.multi_snippet
 
 
 -- define the function used by the snippet 
-local date = function() return {os.date('%Y-%m-%d')} end
+local date = function() return {os.date('%Y-%m-%d %H:%M')} end
 
 ls.add_snippets(nil, {
   all = {

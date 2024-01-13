@@ -132,3 +132,11 @@ end)
 vim.keymap.set("v", "<leader>W", ":'<,'>w ! <CR>", {desc="Send visual selection to an external command."})
 
 vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis <CR>", {desc="Do a git diff of the current buffer."})
+
+vim.keymap.set("n", "<leader>ss", function ()
+  local current_buffer = vim.fn.expand("%")
+  local cmd = string.format("./%s", current_buffer)
+  local results = require('max.capture').to_table(cmd)
+  vim.cmd(':vnew')
+  vim.api.nvim_buf_set_lines(0, -1, -1, false, results)
+end, {desc="Write the output of the current bashfile to :vnew."})

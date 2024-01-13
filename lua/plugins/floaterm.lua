@@ -97,6 +97,22 @@ return {
       }
     }
 
+    local bash = {
+      floaterm = {
+        width     = 0.80,
+        height    = 0.80,
+        name      = 'bash-current-buffer',
+        position  = 'center',
+        autoclose = 0,
+        cmd       = './'..vim.fn.expand("%"),
+      },
+      maps   = {
+        lhs  = '<leader>ss',
+        desc = 'Run the current bash-script in a floaterm'
+      }
+    }
+
+    -- local floaterm_configs = {main, lazygit, ipython, ipython_buffer, bash}
     local floaterm_configs = {main, lazygit, ipython, ipython_buffer}
 
     for _, config in pairs(floaterm_configs) do

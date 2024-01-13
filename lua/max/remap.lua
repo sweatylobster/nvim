@@ -102,6 +102,9 @@ vim.keymap.set("n", "<leader>e", ":Explore <CR>", {desc = "Toggle netrw"})
 vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)')
 vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)')
 
+vim.keymap.set('n', 'gh', '^')
+vim.keymap.set('n', 'gl', '$')
+
 -- emacs shit for command and insert mode
 vim.keymap.set({'c', 'i'}, '<C-a>', '<Home>')
 vim.keymap.set({'c', 'i'}, '<C-e>', '<End>')
@@ -126,7 +129,9 @@ vim.keymap.set('n', '<leader>b', function ()
   end)
 
 vim.keymap.set("n", "<leader>alg", function ()
-  require('max.adder').choose()
+  coroutine.wrap(function ()
+    require('max.adder').choose()
+  end)()
 end)
 
 vim.keymap.set("v", "<leader>W", ":'<,'>w ! <CR>", {desc="Send visual selection to an external command."})

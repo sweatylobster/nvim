@@ -27,9 +27,9 @@ function M.filter(t)
     -- get and set line number
     -- thanks
     -- NOTE: https://vi.stackexchange.com/questions/39964/how-to-get-the-total-lines-of-a-file-before-its-loaded-into-a-buffer
-    local lineno = tonumber(vim.fn.system({ 'wc', '-l', vim.fn.expand("%") }):match("%d+")) -1 + i
+    local invoice = tonumber(vim.fn.system({ 'wc', '-l', vim.fn.expand("%") }):match("%d+")) -1 + i
     local lines = {}
-    table.insert(lines, lineno)
+    table.insert(lines, invoice)
     for l in json:lines() do
       -- get rid of doctor title
       l = l:gsub("(,%sD%.C%.)", "")
@@ -62,7 +62,7 @@ end
 
 -- vim.api.nvim_buf_set_text
 
-M.choose = coroutine.wrap(function ()
+function M.choose()
   -- local fzf_fn = fzf_helpers.cmd_line_transformer(jq_unique_patients, function (x)
   --   return x
   -- end)
@@ -77,6 +77,6 @@ M.choose = coroutine.wrap(function ()
 
   return M.filter(selection)
 
-end)
+end
 
 return M

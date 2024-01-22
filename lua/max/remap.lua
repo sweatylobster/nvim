@@ -114,7 +114,9 @@ vim.keymap.set({'c', 'i'}, '<A-b>', '<S-Left>')
 vim.keymap.set({'c', 'i'}, '<A-f>', '<S-Right>')
 vim.keymap.set({'c', 'i'}, '<C-d>', '<Del>')
 
-vim.keymap.set('n', '<leader>j', ':NoiceDismiss <CR>')
+-- I should maybe set this keybind to something more useful and reconfigure noice.
+--vim.keymap.set('n', '<leader>j', ':NoiceDismiss <CR>')
+vim.keymap.set('n', '<leader>nd', ':NoiceDismiss <CR>')
 
 vim.keymap.set('n', '<leader>nt', ':NoiceTelescope <CR>')
 
@@ -134,11 +136,12 @@ vim.keymap.set("n", "<leader>alg", function ()
   end)()
 end)
 
-vim.keymap.set("v", "<leader>W", ":'<,'>w ! <CR>", {desc="Send visual selection to an external command."})
+-- should do a require('max.capture').to_table(selection)
+vim.keymap.set("x", "<leader>W", ":'<,'>w ! <CR>", {desc="Send visual selection to an external command."})
 
 vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis <CR>", {desc="Do a git diff of the current buffer."})
 
-vim.keymap.set("n", "<leader>ss", function ()
+vim.keymap.set("n", "<leader>ssv", function ()
   local current_buffer = vim.fn.expand("%")
   local cmd = string.format("./%s", current_buffer)
   local results = require('max.capture').to_table(cmd)

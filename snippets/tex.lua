@@ -45,7 +45,7 @@ ls.add_snippets(nil, {
       {
         t({"%! TeX program = lualatex"}),
         t({"", "\\documentclass[12pt]{article}"}),
-        t({"", "\\usepackage[top=.5in]{geometry}"}),
+        t({"", "\\usepackage[letterpaper,top=.5in]{geometry}"}),
         t({"", "\\usepackage{luacode}"}),
         t({"", "\\author{Max de Hoyos}", "", "\\title{"}),
         i(1, "TITLE"),

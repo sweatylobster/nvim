@@ -107,13 +107,13 @@ return {
         cmd       = './'..vim.fn.expand("%"),
       },
       maps   = {
-        lhs  = '<leader>ss',
+        lhs  = '<leader>ssf',
         desc = 'Run the current bash-script in a floaterm'
       }
     }
 
-    -- local floaterm_configs = {main, lazygit, ipython, ipython_buffer, bash}
-    local floaterm_configs = {main, lazygit, ipython, ipython_buffer}
+    local floaterm_configs = {main, lazygit, ipython, ipython_buffer, bash}
+    -- local floaterm_configs = {main, lazygit, ipython, ipython_buffer}
 
     for _, config in pairs(floaterm_configs) do
       make_term_and_normal_mappings(config)

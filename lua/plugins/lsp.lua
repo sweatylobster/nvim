@@ -64,6 +64,9 @@ return{
       --  the `settings` field of the server config. You must look up that documentation yourself.
       local servers = {
 	clangd = {},
+	jsonls = {},
+	jqls = {},
+	jedi_language_server = {},
 	-- gopls = {},
 	-- zls = {},
 	pyright = {

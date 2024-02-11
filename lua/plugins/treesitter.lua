@@ -14,10 +14,11 @@ return {
         'bash',
         'c',
         'cpp',
+        'css',
         'go',
-        'help',
         'html',
         'json',
+        'jq',
         'lua',
         'markdown',
         'markdown_inline',
@@ -28,8 +29,8 @@ return {
         'vim',
         'yaml',},
 
-      highlight = { enable = true, disable = {'markdown'} },
-      indent = { enable = true, disable = {} },
+      highlight = { enable = true, disable = {'help', 'markdown', 'markdown_inline'} },
+      indent = { enable = true, disable = {'help', 'markdown', 'markdown_inline'} },
       incremental_selection = {
         enable = true,
         keymaps = {

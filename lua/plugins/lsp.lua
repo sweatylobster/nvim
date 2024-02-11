@@ -66,9 +66,23 @@ return{
 	clangd = {},
 	jsonls = {},
 	jqls = {},
-	jedi_language_server = {},
 	-- gopls = {},
 	-- zls = {},
+	--
+
+	jedi_language_server = {},
+	pylsp = {
+	  settings = {
+	    pylsp = {
+	      plugins = {
+		pycodestyle = {
+		  ignore = {'W391', 'E501'},
+		  maxLineLength = 300
+		}
+	      }
+	    }
+	  }
+	},
 	pyright = {
 	  python = {
 	    analysis = {

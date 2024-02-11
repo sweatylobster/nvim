@@ -92,8 +92,6 @@ vim.keymap.set('n', '<leader>h', ':Alpha <CR>', { desc = "Alpha homescreen" })
 vim.keymap.set('n', '<leader>t', ':Telescope <CR>', { desc = "Open Telescope" })
 
 -- Netrw bindings
-vim.keymap.set("n", "<leader>e", ":Explore <CR>", {desc = "Toggle netrw"})
--- vim.keymap.set("n", "<leader>E", ":Explore <CR>", {desc = "Toggle netrw"})
 
 -- FzfLua bindings c.f. $NVIM_CONFIG/lua/plugins/fzf.lua
 -- vim.keymap.set("n", "<leader>F", ":FzfLua <CR>", {desc = "lua♡fzf"})

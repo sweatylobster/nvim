@@ -146,3 +146,11 @@ vim.keymap.set("n", "<leader>ssv", function ()
   vim.cmd(':vnew')
   vim.api.nvim_buf_set_lines(0, -1, -1, false, results)
 end, {desc="Write the output of the current bashfile to :vnew."})
+
+vim.keymap.set('n', '<leader>af', function ()
+  local opts = {
+    cwd = "$AGUILA",
+    prompt_title = "Search over the aguila project",
+  }
+  require('telescope.builtin').find_files(opts)
+end)

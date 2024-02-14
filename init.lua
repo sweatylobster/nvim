@@ -24,6 +24,7 @@ require('max')
 
 -- Load my snippets bro
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets"})
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

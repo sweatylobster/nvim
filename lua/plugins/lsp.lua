@@ -70,27 +70,31 @@ return{
 	-- zls = {},
 	--
 
-	jedi_language_server = {},
-	pylsp = {
-	  settings = {
-	    pylsp = {
-	      plugins = {
-		pycodestyle = {
-		  ignore = {'W391', 'E501'},
-		  maxLineLength = 300
-		}
-	      }
-	    }
-	  }
-	},
+	-- jedi_language_server = {},
+	-- pylsp = {
+	--   settings = {
+	--     pylsp = {
+	--       plugins = {
+	-- 	pycodestyle = {
+	-- 	  ignore = {'W391', 'E501'},
+	-- 	  maxLineLength = 300
+	-- 	}
+	--       }
+	--     }
+	--   }
+	-- },
 	pyright = {
+	  disableOrganizeImports = true,
 	  python = {
 	    analysis = {
 	      autoSearchPaths = true,
 	      diagnosticMode = "workspace",
-	      useLibraryCodeForTypes = true
+	      useLibraryCodeForTypes = true,
+	      ignore = {'*'}, -- use ruff for linting
 	    }
 	  },
+	},
+	ruff_lsp = {
 	},
 
 	rust_analyzer = {

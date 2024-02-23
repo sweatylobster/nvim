@@ -40,6 +40,9 @@ ls.add_snippets(nil, {
     s({trig = "noinjper", desc = "No MVA or personal injuries."}, {
       t({"The patient denies having sustained any personal, sports-related, or motor-vehicle injuries."}),
     }),
+    s({trig = "begr"}, {
+      t("beginning to develop symptoms of pain in connection with the regular execution of her work duties, namely: "),
+    }),
     s({trig = "dmg"}, {
       t({"prolonged standing and sitting, continuous fine manipulation of the hands and fingers, gripping, grasping, pulling, pushing, twisting, turning, torquing, dragging, stooping, squatting, working overhead, and lifting up to 40 pounds"}),
     }),
@@ -50,4 +53,3 @@ ls.add_snippets(nil, {
     })),
   }
 })
-

@@ -69,8 +69,7 @@ function M.choose()
   local options = table.concat({
     '--multi',
     '--reverse',
-    '--bind one:toggle+clear-query',
-    '--prompt="Don\'t be alarmed; the prompt clears when you find a unique match."',
+    '--prompt="Happy hunting!"',
   }, " ")
 
   local selection = fzf.fzf(jq_unique_patients, options)

@@ -34,14 +34,17 @@ ls.add_snippets(nil, {
     s({trig = "nodis", desc = "State that the patient has no diseases."}, {
       t({"The patient has no known history of heart disease, high blood pressure, kidney disease, diabetes, tuberculosis, cancer, ulcers, pneumonia, lung disease, eye problems, skin problems, asthma, hepatitis, liver disease, thyroid disease, gout, rheumatoid arthritis, Lupus, or arthritis."}),
     }),
+    s({trig = "nosur", desc = "No work-related injuries."}, c(1, {
+      t"The patient denies having undergone prior surgeries.",
+    })),
     s({trig = "noinjwr", desc = "No work-related injuries."}, c(1, {
-      t"The patient denies having sustained any work-related injuries.",
+      t"The patient denies having sustained prior work-related injuries.",
     })),
     s({trig = "noinjper", desc = "No MVA or personal injuries."}, {
-      t({"The patient denies having sustained any personal, sports-related, or motor-vehicle injuries."}),
+      t({"The patient denies having sustained prior personal, sports-related, or motor-vehicle injuries."}),
     }),
     s({trig = "begr"}, {
-      t("beginning to develop symptoms of pain in connection with the regular execution of her work duties, namely: "),
+      t("beginning to develop symptoms of pain in connection with the regular execution of the following work duties: "),
     }),
     s({trig = "dmg"}, {
       t({"prolonged standing and sitting, continuous fine manipulation of the hands and fingers, gripping, grasping, pulling, pushing, twisting, turning, torquing, dragging, stooping, squatting, working overhead, and lifting up to 40 pounds"}),

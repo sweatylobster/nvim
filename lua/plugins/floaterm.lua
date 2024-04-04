@@ -112,7 +112,21 @@ return {
       }
     }
 
-    local floaterm_configs = {main, lazygit, ipython, ipython_buffer, bash}
+    local taskwarrior = {
+      floaterm = {
+        width     = 0.90,
+        height    = 0.90,
+        name      = 'taskwarrior-tui',
+        position  = 'center',
+        autoclose = 1,
+        cmd       = 'taskwarrior-tui',
+      },
+      maps   = {
+        lhs  = '<leader>T',
+        desc = 'Open taskwarrior-tui cmdline program'
+      }
+    }
+    local floaterm_configs = {main, lazygit, ipython, ipython_buffer, bash, taskwarrior}
     -- local floaterm_configs = {main, lazygit, ipython, ipython_buffer}
 
     for _, config in pairs(floaterm_configs) do

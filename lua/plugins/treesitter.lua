@@ -29,7 +29,7 @@ return {
         'vim',
         'yaml',},
 
-      highlight = { enable = true, disable = {'help', } },
+      highlight = { enable = true, disable = {'help', 'latex'} },
       indent = { enable = true, disable = {'help', } },
       incremental_selection = {
         enable = true,
@@ -89,7 +89,7 @@ return {
     -- Diagnostic keymaps
     vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {desc = 'Go to previous diagnostic'})
     vim.keymap.set('n', ']d', vim.diagnostic.goto_next, {desc = 'Go to next diagnostic'})
-    vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, {desc = 'Open diagnostic float'})
+    vim.keymap.set('n', '<leader>E', vim.diagnostic.open_float, {desc = 'Open diagnostic float'})
     vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, {desc = 'Open diagnostic location list'})
   end,
 }

@@ -50,7 +50,6 @@ function M.filter(t)
     print(result)
     table.insert(a, result)
   end
-  -- NOTE: maybe right before this
   return a
 end
 
@@ -74,6 +73,15 @@ function M.choose()
 
   local selection = fzf.fzf(jq_unique_patients, options)
 
+  -- TODO: missing a lot of steps in API
+  -- 1) change the source
+  --      can i write the jq query?
+  -- 2) change the output
+  --      to json, csv, whatever
+  -- 3) explicitly state the file to write to
+  --      do i always wanna write to a file?
+  --      do i always want it at the end of the file?
+  --      do i wanna choose the current line with vim.api.nvim_get_current_line()
   return M.filter(selection)
 
 end

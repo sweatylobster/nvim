@@ -112,12 +112,6 @@ vim.keymap.set({'c', 'i'}, '<A-b>', '<S-Left>')
 vim.keymap.set({'c', 'i'}, '<A-f>', '<S-Right>')
 vim.keymap.set({'c', 'i'}, '<C-d>', '<Del>')
 
--- I should maybe set this keybind to something more useful and reconfigure noice.
---vim.keymap.set('n', '<leader>j', ':NoiceDismiss <CR>')
-vim.keymap.set('n', '<leader>nd', ':NoiceDismiss <CR>')
-
-vim.keymap.set('n', '<leader>nt', ':NoiceTelescope <CR>')
-
 -- run current file
 vim.keymap.set('n', '<leader>b', function ()
   local path = vim.fn.expand("%")
@@ -154,3 +148,5 @@ vim.keymap.set('n', '<leader>af', function ()
   }
   require('telescope.builtin').find_files(opts)
 end)
+
+vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', {desc="Toggle NvimTree"})

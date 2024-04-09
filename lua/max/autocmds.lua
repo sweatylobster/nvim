@@ -1,9 +1,9 @@
 local function augroup(name)
-  return vim.api.nvim_create_augroup(name, { clear = true })
+  return vim.api.nvim_create_augroup(name, { clear = false })
 end
 
 -- Disable line numbers in terminal mode
-vim.api.nvim_create_autocmd({ "TermEnter"}, {
+vim.api.nvim_create_autocmd({ "TermOpen" }, {
   group = augroup("terminal"),
   callback = function ()
     vim.o.number = false

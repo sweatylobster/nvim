@@ -70,8 +70,8 @@ return {
 
     local lazygit = {
       floaterm = {
-        width  = 0.67,
-        height = 0.67,
+        width  = 0.90,
+        height = 0.90,
         name   = 'lazygit',
         autoclose = 1,
         cmd    = 'lazygit',

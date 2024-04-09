@@ -8,10 +8,15 @@ local date = os.date("%m-%d-%Y")
 
 local aguila = os.getenv("AGUILA")
 
-local filename = aguila.."/billing/come/upcoming.json"
+local sources = {
+  upcoming = aguila.."/billing/come/upcoming.json",
+  appts = aguila.."/billing/appts/appts.json"
+}
+
+local filename = sources.appts
 
 local jq_unique_patients = string.format(
-  [[jq --arg date %s 'map(select(.dos | test($date))) | .[].name' -r %s]],
+  [[jq --arg date %s 'map(select(.dos | test($date))) | unique | .[].name' -r %s]],
   date, filename)
 
 function M.filter(t)
@@ -19,7 +24,7 @@ function M.filter(t)
   for i, v in ipairs(t) do
     local name = v
     local get_patient_json = string.format(
-      [[jq -r --arg date %s --arg patient "%s" 'map(select(.dos | test($date))) | map(select(.name | test($patient)))[] | [.dos,.doctor,.name,.dob][]' %s]],
+      [[jq -r --arg date %s --arg patient "%s" 'map(select(.dos | test($date))) | map(select(.name | test($patient))) | unique | .[] | [.dos,.doctor,.name,.dob][]' %s]],
       date, name, filename)
 
     local json = assert(io.popen(get_patient_json, 'r'))
@@ -35,7 +40,8 @@ function M.filter(t)
       l = l:gsub("(,%sD%.C%.)", "")
       l = l:gsub(",%sL%.Ac", "")
       l = l:gsub("Tae Young", "Young Tae")
-      if l == date then l = os.date("%Y-%m-%d") end
+      -- if l == date then l = os.date("%Y-%m-%d") end
+      if l == date then l = l:gsub("(%d%d)-(%d%d)-(%d%d%d%d)", "%3-%1-%2") end
       table.insert(lines, l)
     end
     -- insert index i

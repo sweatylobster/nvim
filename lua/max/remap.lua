@@ -124,7 +124,7 @@ vim.keymap.set('n', '<leader>b', function ()
 
 vim.keymap.set("n", "<leader>alg", function ()
   coroutine.wrap(function ()
-    require('max.adder').choose()
+    require('max.aguila.adder').choose()
   end)()
 end)
 
@@ -150,3 +150,25 @@ vim.keymap.set('n', '<leader>af', function ()
 end)
 
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', {desc="Toggle NvimTree"})
+vim.keymap.set('n', '<leader>E', function()
+  vim.cmd(':CdGitRoot')
+  vim.cmd(':NvimTreeToggle')
+end, {desc="Toggle NvimTree"})
+
+vim.keymap.set('n', '<leader>vp', function()
+  coroutine.wrap(function ()
+    local prefix = "/users/max/code/"
+    local projects = {'aguila', 'universal-mail'}
+    local fzf = require('fzf')
+    local dir = fzf.fzf(projects, '--prompt="Which project folder do you want to visit?>"')
+    local path = prefix..dir
+    print(string.format("Moving to %s", path))
+    require('nvim-tree.api').tree.change_root(path)
+  end)()
+end, {desc = '[V]iew [P]roject folders'})
+
+
+vim.keymap.set('n', '<leader>sss', function ()
+  -- get absolute path to current buffer
+  vim.cmd(':terminal %:p')
+end, {desc="Run shell script in terminal"})

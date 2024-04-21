@@ -172,3 +172,6 @@ vim.keymap.set('n', '<leader>sss', function ()
   -- get absolute path to current buffer
   vim.cmd(':terminal %:p')
 end, {desc="Run shell script in terminal"})
+
+vim.keymap.set('n', '[b', ':bprevious<CR>', {desc='Go to previous buffer'})
+vim.keymap.set('n', ']b', ':bnext<CR>', {desc='Go to next buffer'})

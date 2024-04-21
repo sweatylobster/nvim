@@ -16,11 +16,11 @@ return {
   },
   config = function ()
     require("noice").setup({
-      -- notify = {
-      --   enabled = false
-      -- },
+      notify = {
+        enabled = false
+      },
       messages = {
-        enabled = false,
+        enabled = true,
       },
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -59,6 +59,8 @@ return {
     map_noice_cmd('<leader>ns', "stats", "[N]oice [S]tats")
 
     map_noice_cmd('<leader>nt', "telescope", "[N]oice [T]elescope")
+
+    map_noice_cmd('<leader>N', '', "[N]oice")
 
   end
 }

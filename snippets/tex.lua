@@ -1,4 +1,3 @@
-
 local ls = require("luasnip")
 local s = ls.snippet
 local sn = ls.snippet_node
@@ -47,6 +46,7 @@ ls.add_snippets(nil, {
         t({"", "\\documentclass[12pt]{article}"}),
         t({"", "\\usepackage[letterpaper,top=.5in]{geometry}"}),
         t({"", "\\usepackage{luacode}"}),
+        t({"", "\\usepackage{luapackageloader}"}),
         t({"", "\\author{Max de Hoyos}", "", "\\title{"}),
         i(1, "TITLE"),
         t("}"),
@@ -77,5 +77,3 @@ ls.add_snippets(nil, {
     })
   }
 })
-
-

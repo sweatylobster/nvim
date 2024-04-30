@@ -9,7 +9,7 @@ vim.g.netrw_list_hide = "*.bak, *.gitignore, *.pyc, *.git"
 vim.g.netrw_liststyle = 0
 
 -- Set the provider python variable
-vim.g.python3_host_prog = os.getenv('HOME') .. "/anaconda3/bin/python"
+vim.g.python3_host_prog = '/opt/homebrew/anaconda3/bin/python'
 
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
@@ -50,3 +50,5 @@ vim.o.completeopt = 'menuone,noselect'
 
 vim.o.spelllang = 'en_us'
 vim.o.spell = true
+
+vim.o.shiftwidth = 2

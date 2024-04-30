@@ -92,6 +92,7 @@ function M.choose(date, source)
     -- '--expect=ctrl-m,ctrl-e,ctrl-o,ctrl-x,ctrl-a,ctrl-b',
     '--expect='..expect_keys,
     '--prompt="Happy hunting!"',
+    '--bind="tab:toggle-up+clear-query"'
   }, " ")
 
   if type(date) == "nil" then

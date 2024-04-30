@@ -48,7 +48,7 @@ return {
         cmd    = ' ',
       },
       maps   = {
-        lhs  = '<F2>',
+        lhs  = '<leader>fe',
         desc = 'Quick terminal browser :) :) :) :)'
       }
     }
@@ -92,7 +92,7 @@ return {
         cmd       = 'ipython -i '..vim.fn.expand("%"),
       },
       maps   = {
-        lhs  = '<F4>',
+        lhs  = '<leader>fp',
         desc = 'Run the current pyfile in a floaterm'
       }
     }
@@ -126,7 +126,23 @@ return {
         desc = 'Open taskwarrior-tui cmdline program'
       }
     }
-    local floaterm_configs = {main, lazygit, ipython, ipython_buffer, bash, taskwarrior}
+
+    local ijq = {
+      floaterm = {
+        width     = 0.90,
+        height    = 0.90,
+        name      = 'ijq-tui',
+        position  = 'center',
+        autoclose = 1,
+        cmd       = 'ijq '..'./'..vim.fn.expand("%"),
+      },
+      maps   = {
+        lhs  = '<leader>fJ',
+        desc = 'Run ijq on current file.'
+      }
+    }
+
+    local floaterm_configs = {main, lazygit, ipython, ipython_buffer, bash, taskwarrior, ijq}
     -- local floaterm_configs = {main, lazygit, ipython, ipython_buffer}
 
     for _, config in pairs(floaterm_configs) do

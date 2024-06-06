@@ -3,7 +3,9 @@ local M = {}
 local fzf = require('fzf')
 local fzf_helpers = require('fzf.helpers')
 
-local aguila = os.getenv("AGUILA")
+local aguila = os.getenv("AGUILA") or "/users/max/code/aguila"
+
+local target = aguila.."/billing/liens/liens.csv"
 
 M.sources = {
   upcoming = aguila.."/billing/come/upcoming.json",
@@ -48,6 +50,7 @@ function M.filter(t, date, interpreter, source)
     -- save as a string
     local result = table.concat(lines, ",")
     -- write it to the bottom of the liens.csv file
+    assert(vim.api.nvim_buf_get_name(0) == target, "Error: calling adder on an unauthorized buffer.")
     vim.api.nvim_buf_set_lines(1, -1, -1, false, {result})
     table.insert(a, result)
   end
@@ -152,13 +155,12 @@ end
 function M.parse_args(s)
   local parsed = {}
   local words = M.split_words(s)
+  assert(#words <= 2, "Error: expecting two args at most.")
   for i=1,#words do
-    print(i)
-    if require('adjust_date').Tabulate(words[i]) then
-      print(words[i])
+    local is_date = words[i]:match("%d%d%d%d%-%d%d%-%d%d")
+    if require('adjust_date').Tabulate(words[i]) and is_date then
       parsed["date"] = words[i]
     elseif type(M.sources[words[i]]) == "string" then
-      print(words[i])
       parsed["source"] = words[i]
     end
   end
@@ -170,14 +172,12 @@ end
 -- local y = "1995-04-02"
 --
 -- local t1 = M.parse_args(x)
+-- local t2 = M.parse_args("2024-02-02 appts")
 --
--- local t2 = M.split_words("2024-02-02 appts")
---
--- for k, v in pairs(t1) do
+-- for k, v in pairs(t2) do
 --   print(k,v)
 -- end
-
-
+--
 -- local o, t = M.split_words("2024-02-02 appts")
 -- local d, s = string.match(x, "([%d%-%/]+)%s?(%a?)")
 -- print(d, s)

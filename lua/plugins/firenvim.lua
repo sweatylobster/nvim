@@ -6,8 +6,5 @@ return {
     lazy = not vim.g.started_by_firenvim,
     build = function()
         vim.fn["firenvim#install"](0)
-    end,
-    config = function ()
-        vim.g.firenvim_config.localSettings['.*'] = { cmdline = 'none', takeover = "always" }
     end
 }

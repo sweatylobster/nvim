@@ -26,5 +26,23 @@ require('max')
 require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/snippets"})
 require("luasnip.loaders.from_vscode").lazy_load()
 
+if vim.g.started_by_firenvim == true then
+  vim.o.laststatus = 0
+  vim.g.firenvim_config = {
+      globalSettings = { alt = "all" },
+      localSettings = {
+          [".*"] = {
+              cmdline  = "neovim", -- or 'none'
+              content  = "text",
+              priority = 0,
+              selector = "textarea",
+              takeover = "always"
+          }
+      }
+  }
+else
+  vim.o.laststatus = 2
+end
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

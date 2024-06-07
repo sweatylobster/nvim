@@ -98,6 +98,17 @@ return {
 
 	-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
 	--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
+	-- Choosing to use <Tab> and <S-Tab> to cycle forth and back in choices, respectively.
+	['<Tab>'] = cmp.mapping(function ()
+	  if luasnip.choice_active() then
+	    luasnip.change_choice(1)
+	  end
+	  end, { 'i', 's' }),
+	['<S-Tab>'] = cmp.mapping(function ()
+	  if luasnip.choice_active() then
+	    luasnip.change_choice(-1)
+	  end
+	  end, { 'i', 's' }),
       },
       sources = {
 	{ name = 'nvim_lsp' },

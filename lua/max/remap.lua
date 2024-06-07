@@ -124,7 +124,7 @@ vim.keymap.set('n', '<leader>b', function ()
 
 vim.keymap.set("n", "<leader>alg", function ()
   coroutine.wrap(function ()
-    require('max.aguila.adder').choose()
+    require('max.aguila.adder').choose(nil, 'upcoming')
   end)()
 end)
 
@@ -137,9 +137,9 @@ vim.keymap.set("n", "<leader>ssv", function ()
   local current_buffer = vim.fn.expand("%")
   local cmd = string.format("./%s", current_buffer)
   local results = require('max.capture').to_table(cmd)
-  vim.cmd(':vnew')
+  vim.cmd(':new')
   vim.api.nvim_buf_set_lines(0, -1, -1, false, results)
-end, {desc="Write the output of the current bashfile to :vnew."})
+end, {desc="Write the output of the current bashfile to :new."})
 
 vim.keymap.set('n', '<leader>af', function ()
   local opts = {
@@ -175,3 +175,24 @@ end, {desc="Run shell script in terminal"})
 
 vim.keymap.set('n', '[b', ':bprevious<CR>', {desc='Go to previous buffer'})
 vim.keymap.set('n', ']b', ':bnext<CR>', {desc='Go to next buffer'})
+
+vim.keymap.set('n', '<leader>-', function() require('oil').toggle_float() end, {desc='Go to previous buffer'})
+
+vim.keymap.set('n', '<leader>ali', function()
+  coroutine.wrap(
+    function ()
+      local lines = require('fzf').fzf("bat $LIENS/liens.csv -p -f", "--ansi --header-lines=1 --multi")
+      for i=1,#lines do
+        local m = lines[i]:match("^%d+")
+        if m then lines[i] = m end
+      end
+      if vim.api.nvim_buf_get_name(0) == os.getenv('AGUILA').."/billing/liens/by_invoice.csv" then
+        vim.api.nvim_buf_set_lines(0, -1, -1, false, lines)
+      else
+        -- print('opening by_invoice.csv and doing things')
+      end
+    end)()
+end, {desc='Aguila lien invoice'})
+
+-- local l = vim.fn.system("bat $LIENS/liens.csv -p -f | fzf-tmux --ansi --header-lines=1 --multi | awk -F ',' '{print $1}'")
+-- print(l)

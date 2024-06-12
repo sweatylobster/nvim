@@ -147,7 +147,7 @@ vim.keymap.set('n', '<leader>af', function ()
     prompt_title = "Search over the aguila project",
   }
   require('telescope.builtin').find_files(opts)
-end)
+end, {desc = "Search [f]iles in [a]guila project"})
 
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', {desc="Toggle NvimTree"})
 vim.keymap.set('n', '<leader>E', function()

@@ -93,9 +93,12 @@ function M.choose(date, source)
     '--multi',
     '--reverse',
     -- '--expect=ctrl-m,ctrl-e,ctrl-o,ctrl-x,ctrl-a,ctrl-b',
+    '--header="ctrl-j:next-page ; ctrl-k:prev-page"',
     '--expect='..expect_keys,
     '--prompt="Happy hunting!"',
-    '--bind="tab:toggle-up+clear-query"'
+    '--bind="tab:toggle-up+clear-query"',
+    '--bind="ctrl-j:execute(sioyek --execute-command next_page)"',
+    '--bind="ctrl-k:execute(sioyek --execute-command previous_page)"',
   }, " ")
 
   if type(date) == "nil" then
@@ -181,5 +184,8 @@ end
 -- local o, t = M.split_words("2024-02-02 appts")
 -- local d, s = string.match(x, "([%d%-%/]+)%s?(%a?)")
 -- print(d, s)
+
+-- local s = tostring(os.date(":AddLiens %Y-%m"))
+vim.keymap.set('n', '<leader>all', tostring(os.date(":AddLiens %Y-%m-")), {desc='AddLiens shortcut'})
 
 return M

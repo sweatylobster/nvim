@@ -43,6 +43,7 @@ if vim.g.started_by_firenvim == true then
 else
   vim.o.laststatus = 2
 end
+vim.g.tmux_navigator_no_mappings = 1
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

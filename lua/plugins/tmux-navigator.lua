@@ -1,15 +1,17 @@
 return {
-  'christoomey/vim-tmux-navigator',
-  config = function ()
-    vim.cmd([[
-      let g:tmux_navigator_no_mappings = 1
-
-      " This is actually done in remap.lua :)
-      " noremap <silent> M-h :<C-U>TmuxNavigateLeft<cr>
-      " noremap <silent> M-j :<C-U>TmuxNavigateDown<cr>
-      " noremap <silent> M-k :<C-U>TmuxNavigateUp<cr>
-      " noremap <silent> M-l :<C-U>TmuxNavigateRight<cr>
-      " noremap <silent> M-/ :<C-U>TmuxNavigatePrevious<cr>
-      ]])
-  end
+  "christoomey/vim-tmux-navigator",
+  cmd = {
+    "TmuxNavigateLeft",
+    "TmuxNavigateDown",
+    "TmuxNavigateUp",
+    "TmuxNavigateRight",
+    "TmuxNavigatePrevious",
+  },
+  keys = {
+    { "<a-h>", "<cmd>TmuxNavigateLeft<cr>" },
+    { "<a-j>", "<cmd>TmuxNavigateDown<cr>" },
+    { "<a-k>", "<cmd>TmuxNavigateUp<cr>" },
+    { "<a-l>", "<cmd>TmuxNavigateRight<cr>" },
+    { "<a-\\>", "<cmd>TmuxNavigatePrevious<cr>" },
+  },
 }

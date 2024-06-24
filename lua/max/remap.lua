@@ -46,23 +46,11 @@ vim.keymap.set('', 'gf', ':edit <cfile><CR>')
 -- The same, but put it in a new tab
 vim.keymap.set('', 'gt', ':tabedit <cfile><CR>', { desc = 'Tabedit the file under cursor' })
 
--- Easy insertion of a trailing ; or , from insert mode
--- Honestly this is clunky trash
--- I tend to think when punctuating
--- vim.keymap.set('i', ';;', '<Esc>A;<Esc>', { desc = "Trailing semi-colon" })
--- vim.keymap.set('i', ',,', '<Esc>A,<Esc>', { desc = "Trailing comma" })
-
 -- Resize with arrows
 vim.keymap.set('n', '<C-Up>', ':resize -2<CR>', { desc = 'Resize up' })
 vim.keymap.set('n', '<C-Down>', ':resize +2<CR>', { desc = 'Resize down' })
-vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', { desc = 'Resize left' })
-vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', { desc = 'Resize right' })
-
--- Move text up and down
-vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi', { desc = 'Move text down' })
-vim.keymap.set('i', '<A-k>', '<Esc>:move .-2<CR>==gi', { desc = 'Move text up' })
-vim.keymap.set('x', '<A-j>', ":move '>+1<CR>gv-gv", { desc = 'Move text down' })
-vim.keymap.set('x', '<A-k>', ":move '<-2<CR>gv-gv", { desc = 'Move text up' })
+vim.keymap.set('n', '<M-Left>', ':vertical resize -2<CR>', { desc = 'Resize left' })
+vim.keymap.set('n', '<M-Right>', ':vertical resize +2<CR>', { desc = 'Resize right' })
 
 -- Inspired by LazyVim
 vim.keymap.set('n', '<leader><tab><tab>', vim.cmd.tabnew, { desc = 'New tab' }) -- always was nice
@@ -72,15 +60,10 @@ vim.keymap.set('n', '<leader><tab>q', vim.cmd.tabclose, { desc = 'Quit tab' }) -
 
 vim.keymap.set('n', '<leader>L', ':Lazy<CR>', { desc = "Open lazy menu" })
 
-vim.keymap.set('n', '<A-h>', ':TmuxNavigateLeft<cr>', { silent = true })
-vim.keymap.set('n', '<A-j>', ':TmuxNavigateDown<cr>', { silent = true })
-vim.keymap.set('n', '<A-k>', ':TmuxNavigateUp<cr>', { silent = true })
-vim.keymap.set('n', '<A-l>', ':TmuxNavigateRight<cr>', { silent = true })
---
--- vim.keymap.set('t', '<A-h>', '<C-\\><C-n><C-w><C-h>')
--- vim.keymap.set('t', '<A-j>', '<C-\\><C-n><C-w><C-j>')
--- vim.keymap.set('t', '<A-k>', '<C-\\><C-n><C-w><C-k>')
--- vim.keymap.set('t', '<A-l>', '<C-\\><C-n><C-w><C-l>')
+-- vim.keymap.set('n', '<A-h>', ':TmuxNavigateLeft<cr>', { silent = true })
+-- vim.keymap.set('n', '<A-j>', ':TmuxNavigateDown<cr>', { silent = true })
+-- vim.keymap.set('n', '<A-k>', ':TmuxNavigateUp<cr>', { silent = true })
+-- vim.keymap.set('n', '<A-l>', ':TmuxNavigateRight<cr>', { silent = true })
 
 -- ORIGINAL MAX THINGS
 -- yikes lol 2/19/2023
@@ -90,8 +73,6 @@ vim.keymap.set('n', '<leader>h', ':Alpha <CR>', { desc = "Alpha homescreen" })
 
 -- Need a general Telescope binding
 vim.keymap.set('n', '<leader>t', ':Telescope <CR>', { desc = "Open Telescope" })
-
--- Netrw bindings
 
 -- FzfLua bindings c.f. $NVIM_CONFIG/lua/plugins/fzf.lua
 -- vim.keymap.set("n", "<leader>F", ":FzfLua <CR>", {desc = "lua♡fzf"})
@@ -120,7 +101,7 @@ vim.keymap.set('n', '<leader>b', function ()
   elseif vim.bo.filetype == 'python' then
     vim.cmd("pyfile " .. path)
   end
-  end)
+end, {desc="Run the current [b]uffer"})
 
 vim.keymap.set("n", "<leader>alg", function ()
   coroutine.wrap(function ()
@@ -183,8 +164,19 @@ vim.keymap.set('n', '<leader>ali', function()
     function ()
       local lines = require('fzf').fzf("bat $LIENS/liens.csv -p -f", "--ansi --header-lines=1 --multi")
       for i=1,#lines do
-        local m = lines[i]:match("^%d+")
-        if m then lines[i] = m end
+        local fields = {}
+        for field in lines[i]:gmatch(",?([%w%s%-%.#]+),?") do
+          table.insert(fields, field)
+        end
+        local invoice = fields[1]
+        local name = fields[4]
+        if invoice then
+          if name then
+            lines[i] = name .. ';' .. invoice
+          end
+        else
+            lines[i] = invoice
+        end
       end
       if vim.api.nvim_buf_get_name(0) == os.getenv('AGUILA').."/billing/liens/by_invoice.csv" then
         vim.api.nvim_buf_set_lines(0, -1, -1, false, lines)
@@ -196,3 +188,4 @@ end, {desc='Aguila lien invoice'})
 
 -- local l = vim.fn.system("bat $LIENS/liens.csv -p -f | fzf-tmux --ansi --header-lines=1 --multi | awk -F ',' '{print $1}'")
 -- print(l)
+--

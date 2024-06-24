@@ -39,5 +39,16 @@ ls.add_snippets(nil, {
     }, {
         f(date, {}),
       }),
+    s({
+      trig = "trans",
+      namr = "trans",
+      dscr = "New WF transaction json entry",
+    }, {
+        t('{"deposit_date": "'), i(1, "deposit_date"), t({'",', ""}),
+        t('"transaction_date": "'), i(2, "transaction_date"), t({'",', ""}),
+        t({'"checks": [', "", }),
+        i(0, "COPY_PASTE_CHECKS_AND_MACRO_AWAY"),
+        t({"", "]", "", "}"})
+      }),
   }
 })

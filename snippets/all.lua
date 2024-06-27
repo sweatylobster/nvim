@@ -46,6 +46,7 @@ ls.add_snippets(nil, {
     }, {
         t('{"deposit_date": "'), i(1, "deposit_date"), t({'",', ""}),
         t('"transaction_date": "'), i(2, "transaction_date"), t({'",', ""}),
+        t('"total": '), i(3, "$999999.99"), t({"", ""}),
         t({'"checks": [', "", }),
         i(0, "COPY_PASTE_CHECKS_AND_MACRO_AWAY"),
         t({"", "]", "", "}"})

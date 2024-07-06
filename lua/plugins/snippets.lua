@@ -14,11 +14,11 @@ return {
     })
 
     -- move around in inodes
-    local opts = { noremap = true, silent = true }
-    vim.keymap.set("i", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
-    vim.keymap.set("s", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
-    vim.keymap.set("i", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
-    vim.keymap.set("s", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+    -- local opts = { noremap = true, silent = true }
+    -- vim.keymap.set("i", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+    -- vim.keymap.set("s", "<c-j>", "<cmd>lua require'luasnip'.jump(1)<CR>", opts)
+    -- vim.keymap.set("i", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
+    -- vim.keymap.set("s", "<c-k>", "<cmd>lua require'luasnip'.jump(-1)<CR>", opts)
 
     -- set choicenode keybinds for both INSERT and VISUAL.
     vim.api.nvim_set_keymap("i", "<C-n>", "<Plug>luasnip-next-choice", {})
@@ -28,12 +28,3 @@ return {
 
   end
 }
-
--- these were ext_opts!!!!!!
--- {
--- 	[require("luasnip.util.types").choiceNode] = {
--- 	  active = {
--- 	    virt_text = { { "haha", "Gruvbox Orange" } },
--- 	  },
--- 	},
---       }

@@ -10,9 +10,10 @@ return { -- LSP Configuration & Plugins
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim', opts = {} },
 
+    -- WARN: not using `neodev` in 0.10.0
     -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
-    { 'folke/neodev.nvim', opts = {} },
+    -- { 'folke/neodev.nvim', opts = {} },
   },
   config = function()
     -- Brief aside: **What is LSP?**
@@ -202,9 +203,9 @@ return { -- LSP Configuration & Plugins
       },
     }
 
-    require('neodev').setup({
-      library = { plugins = { "nvim-dap-ui" }, types = true},
-    })
+    -- require('neodev').setup({
+    --   library = { plugins = { "nvim-dap-ui" }, types = true},
+    -- })
 
   end,
 }

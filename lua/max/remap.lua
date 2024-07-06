@@ -189,3 +189,8 @@ end, {desc='Aguila lien invoice'})
 -- local l = vim.fn.system("bat $LIENS/liens.csv -p -f | fzf-tmux --ansi --header-lines=1 --multi | awk -F ',' '{print $1}'")
 -- print(l)
 --
+--
+vim.keymap.set('n', "<leader>so", function ()
+  local pdf = vim.api.nvim_get_current_line():match(".+%.pdf")
+  vim.system({'sioyek', '--execute-command', 'open_document', '--execute-command-data', pdf})
+end)

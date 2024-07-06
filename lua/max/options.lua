@@ -8,8 +8,17 @@ vim.g.netrw_list_hide = "*.bak, *.gitignore, *.pyc, *.git"
 -- Name, +time, wide, tree
 vim.g.netrw_liststyle = 0
 
+local function get_python3_host_prog()
+  -- if os.getenv("AGUILA") then
+  --   return os.getenv("AGUILA")..'/.devenv/state/venv/bin/python'
+  -- else
+    return '/opt/homebrew/anaconda3/bin/python'
+  -- end
+end
+
 -- Set the provider python variable
-vim.g.python3_host_prog = '/opt/homebrew/anaconda3/bin/python'
+-- NOTE: expand this per definite project
+vim.g.python3_host_prog = get_python3_host_prog()
 
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0

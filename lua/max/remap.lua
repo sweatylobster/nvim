@@ -30,6 +30,7 @@ vim.keymap.set("v", "<leader>d", "\"_d", { desc = '[D]elete selection to black-h
 
 -- Replace word under cursor
 vim.keymap.set('n', '<leader>rw', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', { desc = '[R]eplace [w]ord under cursor' })
+vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Make current file executable' })
 
 -- TODO: Fuzzy find a word from the buffer to replace
 -- vim.keymaps.set('n', '<leader>rs' '', {desc = "[R]eplace [s]earch term"})
@@ -156,13 +157,14 @@ end, {desc="Run shell script in terminal"})
 
 vim.keymap.set('n', '[b', ':bprevious<CR>', {desc='Go to previous buffer'})
 vim.keymap.set('n', ']b', ':bnext<CR>', {desc='Go to next buffer'})
+vim.keymap.set('n', '<leader>bx', ':bdelete<CR>', {desc='Delete the current buffer.'})
 
 vim.keymap.set('n', '<leader>-', function() require('oil').toggle_float() end, {desc='Go to previous buffer'})
 
 vim.keymap.set('n', '<leader>ali', function()
   coroutine.wrap(
     function ()
-      local lines = require('fzf').fzf("bat $LIENS/liens.csv -p -f", "--ansi --header-lines=1 --multi")
+      local lines = require('fzf').fzf("bat $AGUILA/billing/liens/liens.csv -p -f", "--ansi --header-lines=1 --multi")
       for i=1,#lines do
         local fields = {}
         for field in lines[i]:gmatch(",?([%w%s%-%.#]+),?") do
@@ -178,7 +180,7 @@ vim.keymap.set('n', '<leader>ali', function()
             lines[i] = invoice
         end
       end
-      if vim.api.nvim_buf_get_name(0) == os.getenv('AGUILA').."/billing/liens/by_invoice.csv" then
+      if vim.api.nvim_buf_get_name(0) == os.getenv('AGUILA').."/accounting/by_invoice.csv" then
         vim.api.nvim_buf_set_lines(0, -1, -1, false, lines)
       else
         -- print('opening by_invoice.csv and doing things')

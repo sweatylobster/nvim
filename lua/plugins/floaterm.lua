@@ -68,19 +68,19 @@ return {
       }
     }
 
-    local lazygit = {
-      floaterm = {
-        width  = 0.90,
-        height = 0.90,
-        name   = 'lazygit',
-        autoclose = 1,
-        cmd    = 'lazygit',
-      },
-      maps   = {
-        lhs  = '<leader>gg',
-        desc = 'Lazygit :)'
-      }
-    }
+    -- local lazygit = {
+    --   floaterm = {
+    --     width  = 0.90,
+    --     height = 0.90,
+    --     name   = 'lazygit',
+    --     autoclose = 1,
+    --     cmd    = 'lazygit',
+    --   },
+    --   maps   = {
+    --     lhs  = '<leader>gg',
+    --     desc = 'Lazygit :)'
+    --   }
+    -- }
 
     local ipython_buffer = {
       floaterm = {

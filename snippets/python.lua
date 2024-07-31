@@ -8,74 +8,35 @@ local f = ls.function_node
 local c = ls.choice_node
 local d = ls.dynamic_node
 local r = ls.restore_node
+local events = require("luasnip.util.events")
+local ai = require("luasnip.nodes.absolute_indexer")
+local extras = require("luasnip.extras")
+local l = extras.lambda
+local rep = extras.rep
+local p = extras.partial
+local m = extras.match
+local n = extras.nonempty
+local dl = extras.dynamic_lambda
+local fmt = require("luasnip.extras.fmt").fmt
+local fmta = require("luasnip.extras.fmt").fmta
+local conds = require("luasnip.extras.expand_conditions")
+local postfix = require("luasnip.extras.postfix").postfix
+local types = require("luasnip.util.types")
+local parse = require("luasnip.util.parser").parse_snippet
+local ms = ls.multi_snippet
 
--- Table of contents
--- SELENIUM
---   import typical libraries : [S]elenium[W]ebelement[I]mports
---   find element shorthand   : [S]elenium[W]ebelement[F]indElement
--- SKLEARN
---   make pipeline and insert imputer : [SK]learn[P]ipeline[I]mport
--- PANDAS
---   typical data cleaning routine like `drop_duplicates()`
---   one-hot encode with `get_dummies()`
--- RECORDLINKAGE
---   typical search for a string, numerical, etc.
--- SCIPY.STATS
---   generate a given distribution and get a statistic back
--- NUMPY
---   generate a distribution and 
+local function date() return {os.date("%Y-%m-%d %H:%M:%S")} end
 
--- Import all common selenium names
--- s({ trig="selimp"},
--- 	{
--- 	t({"from selenium import webdriver"}),
--- 	t({"from selenium.webdriver.common.by import By"}),
--- 	t({""}),
--- 	t({"driver = webdriver.Firefox()"}),
--- 	t({"driver.implicitly_wait(10)"}),
--- 	t({"driver.get("}),
--- 	i(1, URL),
--- 	t({")"}),
--- 	    }),
---
--- s({ trig="dfx"},
--- 	{
--- 	t({"driver.find_element${1}(By.XPATH, ${2})"}),
--- 	})
---
--- # TODO: make a pipeline for any kind of imputer
--- s({ trig="skpi" },
--- {
--- 	t({"from sklearn.pipeline import make_pipeline"}),
--- 	t({}),
--- 	i(1, pipeline = make_pipeline({$1})
--- 	}),
---
--- # TODO: pandas drop duplicates, other cleaning functions
--- # s({ trig="pdd"}
---
---
--- # TODO: scipy.stats generate a distribution relevant to a problem
--- # we can make a functionnode that interviews the user!
--- # e.g. P(A|B) = P(B|A) * P(A) / P(B)
--- # So the typical A B being
--- # rain, clouds ; clouds 'presage' rain
--- # "Is the statement reversible?" -> chance of clouds given rain seems good
--- # But where the hypothesis is "rain 'presages' no-shows"
--- # "the chance of rain given no-shows" is not reversible
--- # So this interview might be of importance, might suggest a different type of distribution
--- # c.f. also C:\Users\maxde\code\interpreting\aguila\stats\finances.md
--- s({ trig="ssd",},
--- {
--- 	t({"from scipy.stats import"}),
--- 	i(1, "DISTRIBUTION"),
--- 	})
---
--- # generate bootstrap samples for a dataframe
---
--- # return the 
--- s({ trig="ssb", },
--- {
--- 	t({"import scipy.stats"}),
--- 	t({"from scipy.stats import binomial"}),
--- }
+ls.add_snippets(nil, {
+  all = {
+    s({
+      trig = "nmmn",
+      namr = "if 'name' == __main__",
+      dscr = 'if __name__ == "__main__":',
+    },
+      {
+        t({'if __name__ == "__main__":', ''}),
+        t('    '), i(0, "main"), t('()'),
+      }),
+  }
+})

@@ -38,5 +38,15 @@ ls.add_snippets(nil, {
         t({'if __name__ == "__main__":', ''}),
         t('    '), i(0, "main"), t('()'),
       }),
+  s({
+    trig = "dstr",
+    namr = "",
+    dscr = 'Add a docstring for the function.',
+  },
+    {
+      t({'"""', ''}),
+      t('    '), i(0, "FUNCTION DESCRIPTION HERE"),
+      t({'', '"""'}),
+    }),
   }
 })

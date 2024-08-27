@@ -115,14 +115,6 @@ vim.keymap.set("x", "<leader>W", ":'<,'>w ! <CR>", {desc="Send visual selection 
 
 vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis <CR>", {desc="Do a git diff of the current buffer."})
 
-vim.keymap.set("n", "<leader>ssv", function ()
-  local current_buffer = vim.fn.expand("%")
-  local cmd = string.format("./%s", current_buffer)
-  local results = require('max.capture').to_table(cmd)
-  vim.cmd(':new')
-  vim.api.nvim_buf_set_lines(0, -1, -1, false, results)
-end, {desc="Write the output of the current bashfile to :new."})
-
 vim.keymap.set('n', '<leader>af', function ()
   local opts = {
     cwd = "$AGUILA",
@@ -149,6 +141,14 @@ vim.keymap.set('n', '<leader>vp', function()
   end)()
 end, {desc = '[V]iew [P]roject folders'})
 
+-- BASH-RUNNER MAPPINGS
+vim.keymap.set("n", "<leader>ssv", function ()
+  local current_buffer = vim.fn.expand("%")
+  local cmd = string.format("./%s", current_buffer)
+  local results = require('max.capture').to_table(cmd)
+  vim.cmd(':new')
+  vim.api.nvim_buf_set_lines(0, -1, -1, false, results)
+end, {desc="Write the output of the current bashfile to :new."})
 
 vim.keymap.set('n', '<leader>sss', function ()
   -- get absolute path to current buffer
@@ -161,32 +161,6 @@ vim.keymap.set('n', '<leader>bx', ':bdelete<CR>', {desc='Delete the current buff
 
 vim.keymap.set('n', '<leader>-', function() require('oil').toggle_float() end, {desc='Go to previous buffer'})
 
-vim.keymap.set('n', '<leader>ali', function()
-  coroutine.wrap(
-    function ()
-      local lines = require('fzf').fzf("bat $AGUILA/billing/liens/liens.csv -p -f", "--ansi --header-lines=1 --multi")
-      for i=1,#lines do
-        local fields = {}
-        for field in lines[i]:gmatch(",?([%w%s%-%.#]+),?") do
-          table.insert(fields, field)
-        end
-        local invoice = fields[1]
-        local name = fields[4]
-        if invoice then
-          if name then
-            lines[i] = name .. ';' .. invoice
-          end
-        else
-            lines[i] = invoice
-        end
-      end
-      if vim.api.nvim_buf_get_name(0) == os.getenv('AGUILA').."/accounting/by_invoice.csv" then
-        vim.api.nvim_buf_set_lines(0, -1, -1, false, lines)
-      else
-        -- print('opening by_invoice.csv and doing things')
-      end
-    end)()
-end, {desc='Aguila lien invoice'})
 
 -- local l = vim.fn.system("bat $LIENS/liens.csv -p -f | fzf-tmux --ansi --header-lines=1 --multi | awk -F ',' '{print $1}'")
 -- print(l)

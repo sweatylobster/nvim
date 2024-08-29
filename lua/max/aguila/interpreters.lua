@@ -6,4 +6,5 @@ return {
   ["ctrl-a"] = "Alexandra Olivas #004573",
   ["ctrl-b"] = "Ana Bonilla #017392",
   ["ctrl-p"] = "Pedro Pano #006585",
+  ["ctrl-d"] = "Paulina Padilla #021570",
 }

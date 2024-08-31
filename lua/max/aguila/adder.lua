@@ -1,7 +1,6 @@
 local M = {}
 
 local fzf = require('fzf')
-local fzf_helpers = require('fzf.helpers')
 
 local aguila = os.getenv("AGUILA") or "/users/max/code/aguila"
 
@@ -12,15 +11,13 @@ M.sources = {
   appts = aguila.."/billing/appts/appts.json"
 }
 
-local filename = M.sources.appts
-
 function M.filter(t, date, interpreter, source)
   local a = {}
   for i, v in ipairs(t) do
     local name = v
     -- get the list of unique patients from the schedule
     local get_patient_json = string.format(
-      [[jq -r --arg date %s --arg patient "%s" 'map(select(.dos | test($date))) | map(select(.name | test($patient))) | unique | .[] | [.dos,.doctor,.name,.dob][]' %s]],
+      [[jq -r --arg date %s --arg patient "%s" 'map(select(.dos | test($date))) | map(select(.name | test($patient))) | unique | .[] | [.dos,.doctor,.name,.dob,.id][]' %s]],
       date, name, M.sources[source])
 
     local json = assert(io.popen(get_patient_json, 'r'))
@@ -92,7 +89,6 @@ function M.choose(date, source)
   local options = table.concat({
     '--multi',
     '--reverse',
-    -- '--expect=ctrl-m,ctrl-e,ctrl-o,ctrl-x,ctrl-a,ctrl-b',
     '--header="ctrl-j:next-page ; ctrl-k:prev-page"',
     '--expect='..expect_keys,
     '--prompt="Happy hunting!"',
@@ -169,21 +165,6 @@ function M.parse_args(s)
   end
   return parsed
 end
-
---
--- local x = "2024-02-02 appts"
--- local y = "1995-04-02"
---
--- local t1 = M.parse_args(x)
--- local t2 = M.parse_args("2024-02-02 appts")
---
--- for k, v in pairs(t2) do
---   print(k,v)
--- end
---
--- local o, t = M.split_words("2024-02-02 appts")
--- local d, s = string.match(x, "([%d%-%/]+)%s?(%a?)")
--- print(d, s)
 
 -- local s = tostring(os.date(":AddLiens %Y-%m"))
 vim.keymap.set('n', '<leader>all', tostring(os.date(":AddLiens %Y-%m-")), {desc='AddLiens shortcut'})

@@ -38,15 +38,21 @@ ls.add_snippets(nil, {
         t({'if __name__ == "__main__":', ''}),
         t('    '), i(0, "main"), t('()'),
       }),
+  -- TODO: If within a function, get the function parameters and format their types with numpydoc format.
+  -- TODO: Use treesitter to get the function parameters and auto-document their types.
   s({
     trig = "dstr",
     namr = "",
     dscr = 'Add a docstring for the function.',
   },
     {
-      t({'"""', ''}),
-      t('    '), i(0, "FUNCTION DESCRIPTION HERE"),
+      t('"""'), i(0, "FUNCTION DESCRIPTION HERE"), t({''}),
       t({'', '"""'}),
+      t({'Parameters', '----------'}),
+      t({"x : type", ''}),
+      t({"Description of parameter `x`.", ""}),
+      t({"y", ""}),
+      t({"Description of parameter `y` (with type not specified).", ""})
     }),
   }
 })

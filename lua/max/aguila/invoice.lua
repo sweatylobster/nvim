@@ -8,10 +8,13 @@ vim.keymap.set('n', '<leader>ali', function()
           table.insert(fields, field)
         end
         local invoice = fields[1]
+        local dos = fields[2]
         local name = fields[4]
         if invoice then
           if name then
-            lines[i] = name .. ';' .. invoice
+            if dos then
+              lines[i] = name .. ';' .. invoice .. ';' .. dos
+            end
           end
         else
             lines[i] = invoice

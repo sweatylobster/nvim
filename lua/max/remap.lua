@@ -96,22 +96,32 @@ vim.keymap.set({'c', 'i'}, '<C-d>', '<Del>')
 
 -- run current file
 vim.keymap.set('n', '<leader>b', function ()
+  local start = os.time()
   local path = vim.fn.expand("%")
-  if vim.bo.filetype == 'lua' then
-    vim.cmd("luafile " .. path)
-  elseif vim.bo.filetype == 'python' then
-    vim.cmd("pyfile " .. path)
+  print('expansion time: ', os.time() - start)
+
+  local filetype = vim.bo.filetype
+
+  local command = nil
+
+  local start = os.time()
+  if filetype == 'lua' then
+    command = "luafile " .. path
+  elseif filetype == 'python' then
+    command = "pyfile " .. path
+  elseif filetype == 'sh' then
+    command = ':terminal %:p'
   end
+  print('conditional block time: ', os.time() - start)
+
+  local start = os.time()
+  vim.cmd(command)
+  print('vim.cmd time', os.time() - start)
+
 end, {desc="Run the current [b]uffer"})
 
-vim.keymap.set("n", "<leader>alg", function ()
-  coroutine.wrap(function ()
-    require('max.aguila.adder').choose(nil, 'upcoming')
-  end)()
-end)
-
 -- should do a require('max.capture').to_table(selection)
-vim.keymap.set("x", "<leader>W", ":'<,'>w ! <CR>", {desc="Send visual selection to an external command."})
+vim.keymap.set("x", "<leader>W", ":'<,'>w ! ", {desc="Send visual selection to an external command."})
 
 vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis <CR>", {desc="Do a git diff of the current buffer."})
 
@@ -159,13 +169,8 @@ vim.keymap.set('n', '[b', ':bprevious<CR>', {desc='Go to previous buffer'})
 vim.keymap.set('n', ']b', ':bnext<CR>', {desc='Go to next buffer'})
 vim.keymap.set('n', '<leader>bx', ':bdelete<CR>', {desc='Delete the current buffer.'})
 
-vim.keymap.set('n', '<leader>-', function() require('oil').toggle_float() end, {desc='Go to previous buffer'})
+vim.keymap.set('n', '<leader>-', function() require('oil').toggle_float() end, {desc='Open floating oil.nvim window.'})
 
-
--- local l = vim.fn.system("bat $LIENS/liens.csv -p -f | fzf-tmux --ansi --header-lines=1 --multi | awk -F ',' '{print $1}'")
--- print(l)
---
---
 vim.keymap.set('n', "<leader>so", function ()
   local pdf = vim.api.nvim_get_current_line():match(".+%.pdf")
   vim.system({'sioyek', '--execute-command', 'open_document', '--execute-command-data', pdf})

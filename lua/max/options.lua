@@ -61,3 +61,12 @@ vim.o.spelllang = 'en_us'
 vim.o.spell = true
 
 vim.o.shiftwidth = 2
+vim.o.tabstop = 4
+vim.o.softtabstop = 4
+
+vim.o.autoread = true
+
+vim.o.swapfile = false
+vim.o.backup = false
+
+vim.o.wildmenu = true

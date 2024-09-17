@@ -70,20 +70,17 @@ vim.keymap.set('n', '<leader>L', ':Lazy<CR>', { desc = "Open lazy menu" })
 -- yikes lol 2/19/2023
 
 -- Go to the Alpha shortcuts. Maybe remap them in the future
-vim.keymap.set('n', '<leader>h', ':Alpha <CR>', { desc = "Alpha homescreen" })
+vim.keymap.set('n', '<leader>h', ':Alpha <CR>', { desc = "Alpha [h]omescreen" })
 
 -- Need a general Telescope binding
-vim.keymap.set('n', '<leader>t', ':Telescope <CR>', { desc = "Open Telescope" })
-
--- FzfLua bindings c.f. $NVIM_CONFIG/lua/plugins/fzf.lua
--- vim.keymap.set("n", "<leader>F", ":FzfLua <CR>", {desc = "lua♡fzf"})
+vim.keymap.set('n', '<leader>t', ':Telescope <CR>', { desc = "Open [T]elescope" })
 
 -- Finally vim-easy-align
 vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)')
 vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)')
 
-vim.keymap.set('n', 'gh', '^')
-vim.keymap.set('n', 'gl', '$')
+vim.keymap.set({'n', 'x'}, 'gh', '^')
+vim.keymap.set({'n', 'x'}, 'gl', '$')
 
 -- emacs shit for command and insert mode
 vim.keymap.set({'c', 'i'}, '<C-a>', '<Home>')
@@ -94,29 +91,22 @@ vim.keymap.set({'c', 'i'}, '<A-b>', '<S-Left>')
 vim.keymap.set({'c', 'i'}, '<A-f>', '<S-Right>')
 vim.keymap.set({'c', 'i'}, '<C-d>', '<Del>')
 
--- run current file
-vim.keymap.set('n', '<leader>b', function ()
-  local start = os.time()
-  local path = vim.fn.expand("%")
-  print('expansion time: ', os.time() - start)
+-- run current buffer
+vim.keymap.set('n', '<leader>%', function ()
+  local ft = vim.bo.filetype
 
-  local filetype = vim.bo.filetype
+  -- Define vim.cmd dispatchers for filetypes.
+  local dispatcher = {
+    lua = "luafile",
+    python = "pyfile",
+    sh = ":terminal",
+  }
 
-  local command = nil
+  -- Break if there's no dispatcher for the filetype.
+  assert(dispatcher[ft], string.format("No dispatcher for filetype: '%s' with extension '%s'", ft, vim.fn.expand("%:e")))
 
-  local start = os.time()
-  if filetype == 'lua' then
-    command = "luafile " .. path
-  elseif filetype == 'python' then
-    command = "pyfile " .. path
-  elseif filetype == 'sh' then
-    command = ':terminal %:p'
-  end
-  print('conditional block time: ', os.time() - start)
-
-  local start = os.time()
-  vim.cmd(command)
-  print('vim.cmd time', os.time() - start)
+  -- See `:help %:p`, `help %:e`.
+  vim.cmd(dispatcher[ft] .. " %:p")
 
 end, {desc="Run the current [b]uffer"})
 
@@ -138,18 +128,6 @@ vim.keymap.set('n', '<leader>E', function()
   vim.cmd(':CdGitRoot')
   vim.cmd(':NvimTreeToggle')
 end, {desc="Toggle NvimTree"})
-
-vim.keymap.set('n', '<leader>vp', function()
-  coroutine.wrap(function ()
-    local prefix = "/users/max/code/"
-    local projects = {'aguila', 'universal-mail'}
-    local fzf = require('fzf')
-    local dir = fzf.fzf(projects, '--prompt="Which project folder do you want to visit?>"')
-    local path = prefix..dir
-    print(string.format("Moving to %s", path))
-    require('nvim-tree.api').tree.change_root(path)
-  end)()
-end, {desc = '[V]iew [P]roject folders'})
 
 -- BASH-RUNNER MAPPINGS
 vim.keymap.set("n", "<leader>ssv", function ()
@@ -175,3 +153,18 @@ vim.keymap.set('n', "<leader>so", function ()
   local pdf = vim.api.nvim_get_current_line():match(".+%.pdf")
   vim.system({'sioyek', '--execute-command', 'open_document', '--execute-command-data', pdf})
 end)
+
+-- local function region_to_text(region)
+--   local text = ''
+--   local maxcol = vim.v.maxcol
+--   for line, cols in vim.spairs(region) do
+--     local endcol = cols[2] == maxcol and -1 or cols[2]
+--     local chunk = vim.api.nvim_buf_get_text(0, line, cols[1], line, endcol, {})[1]
+--     text = ('%s%s\n'):format(text, chunk)
+--   end
+--   return text
+-- end
+--
+-- local r = vim.region(0, "'<", "'>", vim.fn.visualmode(), true)
+-- vim.print(region_to_text(r))
+-- -- vim.fn.setreg

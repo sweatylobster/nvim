@@ -20,8 +20,7 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Center screen when searching"})
 vim.keymap.set("x", "<leader>p", "\"_dP", { desc = "Paste and don't store" })
 
 -- Clip it, Johnson!
-vim.keymap.set("n", "<leader>y", "\"+y", { desc = '[Y]ank word to clipboard' })
-vim.keymap.set("v", "<leader>y", "\"+y", { desc = '[Y]ank selection to clipboard' })
+vim.keymap.set({"n", "v"}, "<leader>y", "\"+y", { desc = '[Y]ank word to clipboard' })
 vim.keymap.set("n", "<leader>Y", "\"+Y", { desc = '[Y]ank line to clipboard' })
 
 -- To hell with it, Johnson!
@@ -145,7 +144,7 @@ end, {desc="Run shell script in terminal"})
 
 vim.keymap.set('n', '[b', ':bprevious<CR>', {desc='Go to previous buffer'})
 vim.keymap.set('n', ']b', ':bnext<CR>', {desc='Go to next buffer'})
-vim.keymap.set('n', '<leader>bx', ':bdelete<CR>', {desc='Delete the current buffer.'})
+vim.keymap.set('n', '<leader>q', ':bdelete<CR>', {desc='Delete the current buffer.'})
 
 vim.keymap.set('n', '<leader>-', function() require('oil').toggle_float() end, {desc='Open floating oil.nvim window.'})
 

@@ -17,7 +17,17 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = ' '
 
 -- And get the package manager going
-require('lazy').setup('plugins')
+require('lazy').setup({
+  spec = {
+    import = 'plugins'
+  },
+  dev = {
+    ---@type string | fun(plugin: LazyPlugin): string directory where you store your local plugin projects
+    path = os.getenv("PROJECTS").."/nvim-plugins/",
+    patterns = {},
+    fallback = false,
+  },
+})
 
 -- Also load timewarp greeting, personal options, and keymaps
 require('max')

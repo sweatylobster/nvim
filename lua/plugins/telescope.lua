@@ -16,7 +16,8 @@ return {
             ['<C-j>'] = 'move_selection_next',
             ['<C-k>'] = 'move_selection_previous',
             ['<C-t>'] = 'file_tab',
-            ['<C-e>'] = 'edit_command_line',
+            -- NOTE: 
+            ['<C-e>'] = 'edit_command_line',  -- more useful for opening paths in the current buf.
             ['<C-s>'] = 'edit_search_line',
           },
         },

@@ -122,7 +122,7 @@ return {
         cmd       = 'taskwarrior-tui',
       },
       maps   = {
-        lhs  = '<leader>T',
+        lhs  = '<leader>fT',
         desc = 'Open taskwarrior-tui cmdline program'
       }
     }

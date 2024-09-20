@@ -29,13 +29,7 @@ vim.keymap.set("v", "<leader>d", "\"_d", { desc = '[D]elete selection to black-h
 
 -- Replace word under cursor
 vim.keymap.set('n', '<leader>rw', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', { desc = '[R]eplace [w]ord under cursor' })
-vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Make current file executable' })
-
--- TODO: Fuzzy find a word from the buffer to replace
--- vim.keymaps.set('n', '<leader>rs' '', {desc = "[R]eplace [s]earch term"})
--- function ()
---   local search_selection = 
--- end
+vim.keymap.set('n', '<leader>X', '<cmd>!chmod +x %<CR>', { silent = true, desc = 'Make current file executable' })
 
 -- Jess Archer stuff
 -- https://github.com/jessarcher/dotfiles/blob/master/nvim/lua/user/keymaps.lua
@@ -57,13 +51,6 @@ vim.keymap.set('n', '<leader><tab><tab>', vim.cmd.tabnew, { desc = 'New tab' }) 
 vim.keymap.set('n', '<leader><tab>]', vim.cmd.tabnext, { desc = '---> Next tab' })  -- ] or l
 vim.keymap.set('n', '<leader><tab>[', vim.cmd.tabprev, { desc = '<--- Prev tab' })  -- [ or h
 vim.keymap.set('n', '<leader><tab>q', vim.cmd.tabclose, { desc = 'Quit tab' }) -- q or d
-
-vim.keymap.set('n', '<leader>L', ':Lazy<CR>', { desc = "Open lazy menu" })
-
--- vim.keymap.set('n', '<A-h>', ':TmuxNavigateLeft<cr>', { silent = true })
--- vim.keymap.set('n', '<A-j>', ':TmuxNavigateDown<cr>', { silent = true })
--- vim.keymap.set('n', '<A-k>', ':TmuxNavigateUp<cr>', { silent = true })
--- vim.keymap.set('n', '<A-l>', ':TmuxNavigateRight<cr>', { silent = true })
 
 -- ORIGINAL MAX THINGS
 -- yikes lol 2/19/2023

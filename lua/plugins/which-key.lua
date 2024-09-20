@@ -180,13 +180,13 @@ return {
     -- refer to the configuration section below
   },
   keys = {
-    {
-      "<leader>?",
-      function()
-        require("which-key").show({ global = false })
-      end,
-      desc = "Buffer Local Keymaps (which-key)",
-    },
+    -- {
+    --   "<leader>?",
+    --   function()
+    --     require("which-key").show({ global = false })
+    --   end,
+    --   desc = "Buffer Local Keymaps (which-key)",
+    -- },
   },
   config = function ()
     require("which-key").add{
@@ -199,11 +199,8 @@ return {
 	require('telescope.builtin').fd(opts)
       end, group = "plugins",
     { "<leader>c", group = "code" },
-    { "<leader>d", group = "document" },
+    { "<leader>d", group = "delete" },
     { "<leader>f", group = "floaterm" },
-    { "<leader>fz", group = "fzf" },
-    { "<leader>fzf", "<cmd>FzfLua files<cr>", desc = "find files" },
-    { "<leader>fzr", "<cmd>FzfLua oldfiles<cr>", desc = "recent files" },
     { "<leader>g", group = "git" },
     { "<leader>gf", function ()
 	  require('telescope.builtin').git_files()

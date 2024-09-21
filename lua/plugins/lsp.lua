@@ -163,6 +163,10 @@ return { -- LSP Configuration & Plugins
     local servers = {
       -- clangd = {},
       -- gopls = {},
+      black = {},
+      jq = {},
+      nil_ls = {},
+      stylua = {},
       -- basedpyright = {},
       rust_analyzer = {},
       ruff = {},
@@ -173,9 +177,10 @@ return { -- LSP Configuration & Plugins
       --    https://github.com/pmizio/typescript-tools.nvim
       --
       -- But for many setups, the LSP (`tsserver`) will work just fine
-      -- tsserver = {},
+      -- ts_ls = {},
       --
       --
+      shellcheck = {},
       shfmt = {},
       ["nixpkgs-fmt"] = {},
       prettier = {},

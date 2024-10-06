@@ -1,7 +1,30 @@
-Tried out LazyVim, and I like it. But it's a lot.
-I also will live and die by [tpope/vim-surround.](https://github.com/tpope/vim-surround)
-Maybe I'll rebind mini-surround in the future.
+# Maxvim aka Hugovim
 
-Anyway, this is what you get when you follow [Elijah Manor's awesome video on lazy.nvim](https://www.youtube.com/watch?v=aqlxqpHs-aQ), copy [the Primeagen's keybindings] (https://www.youtube.com/watch?v=w7i4amO_zaE), and [Jess Archer's keybindings.](https://www.youtube.com/watch?v=434tljD-5C8&t=687s)
+Contains my personal Lua configuration managed with [Lazy](https://lazy.folke.io/).
+Has too many plugins, which I intend to clean.
 
-Enjoy.
+I really like managing dotfiles with Nix.
+Learned a lot from copying [Carlos Becker's
+dotfiles](https://github.com/caarlos0/dotfiles) in mid September 2024.
+You can see my [current config
+here](https://github.com/sweatylobster/nixos-config).
+
+I'm also working on a [nixvim](https://github.com/nix-community/nixvim)
+implementation of it, which lives [here](https://github.com/sweatylobster/maxvim).
+
+## Why this repo?
+
+I love home-manager etc, but:
+
+1. I doubt I can always install Nix on a system.
+2. I like editing my config and doing `:so %`.
+
+For this reason, I install this configuration like so:
+
+```bash
+# In some kind of *.shrc
+[ -d "$HOME/.config/maxvim" ] || {
+  git clone https://github.com/sweatylobster/nvim ~/.config/maxvim
+}
+alias maxvim="NVIM_APPNAME=maxvim nvim"
+```

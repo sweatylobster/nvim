@@ -57,9 +57,6 @@ vim.keymap.set("n", "<leader><tab>]", vim.cmd.tabnext, { desc = "---> Next tab" 
 vim.keymap.set("n", "<leader><tab>[", vim.cmd.tabprev, { desc = "<--- Prev tab" }) -- [ or h
 vim.keymap.set("n", "<leader><tab>q", vim.cmd.tabclose, { desc = "Quit tab" }) -- q or d
 
--- ORIGINAL MAX THINGS
--- yikes lol 2/19/2023
-
 -- Go to the Alpha shortcuts. Maybe remap them in the future
 vim.keymap.set("n", "<leader>h", ":Alpha <CR>", { desc = "Alpha [h]omescreen" })
 
@@ -70,8 +67,8 @@ vim.keymap.set("n", "<leader>t", ":Telescope <CR>", { desc = "Open [T]elescope" 
 vim.keymap.set("x", "ga", "<Plug>(EasyAlign)")
 vim.keymap.set("n", "ga", "<Plug>(EasyAlign)")
 
-vim.keymap.set({ "n", "x" }, "gh", "^")
-vim.keymap.set({ "n", "x" }, "gl", "$")
+vim.keymap.set({ "n", "x", "o" }, "gh", "^")
+vim.keymap.set({ "n", "x", "o" }, "gl", "$")
 
 -- emacs shit for command and insert mode
 vim.keymap.set({ "c", "i" }, "<C-a>", "<Home>")
@@ -103,20 +100,8 @@ vim.keymap.set("n", "<leader>%", function()
   vim.cmd(dispatcher[ft] .. " %:p")
 end, { desc = "Run the current [b]uffer" })
 
--- should do a require('max.capture').to_table(selection)
-vim.keymap.set("x", "<leader>W", ":'<,'>w ! ", { desc = "Send visual selection to an external command." })
-
-vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis <CR>", { desc = "Do a git diff of the current buffer." })
-
-vim.keymap.set("n", "<leader>af", function()
-  local opts = {
-    cwd = "$AGUILA",
-    prompt_title = "Search over the aguila project",
-  }
-  require("telescope.builtin").find_files(opts)
-end, { desc = "Search [f]iles in [a]guila project" })
-
--- BASH-RUNNER MAPPINGS
+-- BASH-RUNNER MAPPINGS.
+-- Could be generalized to work with dispatchers.
 vim.keymap.set("n", "<leader>ssv", function()
   local current_buffer = vim.fn.expand("%")
   local cmd = string.format("./%s", current_buffer)
@@ -133,3 +118,13 @@ end, { desc = "Run shell script in terminal" })
 vim.keymap.set("n", "[b", ":bprevious<CR>", { desc = "Go to previous buffer" })
 vim.keymap.set("n", "]b", ":bnext<CR>", { desc = "Go to next buffer" })
 vim.keymap.set("n", "<leader>q", ":bdelete<CR>", { desc = "Delete the current buffer." })
+
+vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis <CR>", { desc = "Do a git diff of the current buffer." })
+
+vim.keymap.set("n", "<leader>af", function()
+  local opts = {
+    cwd = "$AGUILA",
+    prompt_title = "Search over the aguila project",
+  }
+  require("telescope.builtin").find_files(opts)
+end, { desc = "Search [f]iles in [a]guila project" })

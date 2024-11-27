@@ -184,6 +184,8 @@ return { -- LSP Configuration & Plugins
       -- ts_ls = {},
       --
       --
+      ts_ls = {},
+      tailwindcss = {},
       shellcheck = {},
       shfmt = {},
       ["nixpkgs-fmt"] = {},

@@ -115,9 +115,16 @@ vim.keymap.set("n", "<leader>sss", function()
   vim.cmd(":terminal %:p")
 end, { desc = "Run shell script in terminal" })
 
+-- buffer stuff
 vim.keymap.set("n", "[b", ":bprevious<CR>", { desc = "Go to previous buffer" })
 vim.keymap.set("n", "]b", ":bnext<CR>", { desc = "Go to next buffer" })
 vim.keymap.set("n", "<leader>q", ":bdelete<CR>", { desc = "Delete the current buffer." })
+
+-- quickfix stuff
+vim.keymap.set("n", "[c", ":cprevious<CR>", { desc = "Go to previous quickfix item" })
+vim.keymap.set("n", "]c", ":cnext<CR>", { desc = "Go to next buffer quickfix item" })
+vim.keymap.set("n", "<leader>co", ":copen<CR>", { desc = "Open quickfix list" })
+vim.keymap.set("n", "<leader>cc", ":cclose<CR>", { desc = "Close quickfix list" })
 
 vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis <CR>", { desc = "Do a git diff of the current buffer." })
 

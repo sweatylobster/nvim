@@ -5,6 +5,7 @@ return { -- LSP Configuration & Plugins
     { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependents
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    "saghen/blink.cmp",
 
     -- Useful status updates for LSP.
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -222,6 +223,9 @@ return { -- LSP Configuration & Plugins
       "stylua", -- Used to format Lua code
     })
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+
+    local blink_capabilities = require("blink.cmp").get_lsp_capabilities()
+    require("lspconfig").lua_ls.setup({ capabilites = blink_capabilities })
 
     require("mason-lspconfig").setup({
       handlers = {

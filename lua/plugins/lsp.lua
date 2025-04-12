@@ -191,6 +191,7 @@ return { -- LSP Configuration & Plugins
       shfmt = {},
       ["nixpkgs-fmt"] = {},
       prettier = {},
+      tinymist = {},
 
       lua_ls = {
         -- cmd = {...},

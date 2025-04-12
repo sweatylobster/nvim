@@ -27,6 +27,7 @@ return {
           "regex",
           "rust",
           "typescript",
+          "typst",
           "vim",
           "yaml",
         },
